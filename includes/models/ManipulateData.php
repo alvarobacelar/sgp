@@ -280,7 +280,7 @@ class ManipulateData extends MysqlConn {
      */
     public function pesquisaRPS(){
         $this->sql = "SELECT * FROM rps,pipeiro WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro
-                            AND $this->fieldId like '%$this->valueId%' $this->orderTable AND status_remove='0'";
+                            AND $this->fieldId like '%$this->valueId%' $this->orderTable AND status_remove='0' ORDER BY id_rps DESC";
         $this->execSQL($this->sql);
     }
     

@@ -35,7 +35,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
         '12' => 'NOVEMBRO'
     );
 
-    // se existir busca irá mostrar a busca
+    // Pesquisando rps por cpf do pipeiro
     $buscaRPS = new ManipulateData();
     if (isset($_POST["inputCpf"])) {
 
@@ -43,13 +43,15 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
         $buscaRPS->setFieldId("pipeiro.cpf_pipeiro");
         $buscaRPS->setValueId("$nomeBuscaPipeiro");
-        $buscaRPS->setOrderTable("AND mes_rps = '$mesAnt[$dataMes]'");
+        $buscaRPS->setOrderTable("AND mes_rps = '$mesAnt[$dataMes]'"); // buscando somente rps geradas no mês corrente.
         $buscaRPS->pesquisaRPS();
 
         while ($valorBusca[] = $buscaRPS->fetch_object()) {
             $smarty->assign("valorBusca", $valorBusca);
         }
         $smarty->assign("buscaRPS", $nomeBuscaPipeiro);
+        
+        // pesquisando rps por cidade (somente estará disponível na versão 1.6.2 do sistema)
     } else if (isset($_POST["selectIdCidade"])) {
         $nomeCidade = addslashes($_POST["selectIdCidade"]);
 
