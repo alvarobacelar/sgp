@@ -60,6 +60,15 @@ function excluirRPS(id) {
     }
 }
 
+function restaurarRPS(id) {
+
+    var excluir = confirm("Deseja realmente RESTAURAR essa RPS??");
+
+    if (excluir) {
+        location.href = "includes/controllers/restaurarRPS.php?idExcluirRPS=" + id;
+    }
+}
+
 function desativarPipeiro(id, idCidade) {
 
     var excluir = confirm("Deseja realmente desativar PIPEIRO para esta cidade??");
