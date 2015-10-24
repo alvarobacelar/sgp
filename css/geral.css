@@ -1,0 +1,41 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 15/09/2014, 13:10:00
+    Author     : Alvaro
+*/
+
+body{
+    background: #CCF;
+}
+
+#erro-senha{
+    font-size: 11px;
+    color: red;
+}
+
+.align{
+    width: 90%;
+    margin: auto;
+}
+
+.rodape{
+    font-size: 12.5px;
+}
+
+#top-home{
+    margin-top: 5%;
+}
+
+#fichaCadastro{
+    width: 100%;
+    font-family: 'Times New Roman, Arial, Verdana';
+    font-size: 14px;
+}
+
+#fichaCadastro .tableDados{font-size: 14px;}
+
+.cidadeDesativada{color: #999; font-weight: bold;}
