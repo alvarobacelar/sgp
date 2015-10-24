@@ -37,7 +37,7 @@
                                 
                                 {if $nivel != "user"}
                                     {if $nivel != "vis" && $funcao != "GCDA"}
-                                        <a onclick="excluirRPS({$v->id_rps})" class="btn btn-info btn-xs"> <span class="glyphicon glyphicon-remove-circle"></span> Restaurar</a>
+                                        <a onclick="restaurarRPS({$v->id_rps})" class="btn btn-info btn-xs"> <span class="glyphicon glyphicon-remove-circle"></span> Restaurar</a>
                                     {/if}
                                 {/if}
                             </td>
