@@ -35,8 +35,8 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
 
     if (isset($_SESSION["erroRPS"])) {
-        if ($_SESSION["erroRPS"] == "excluido") {
-            $smarty->assign("erroRPS", "<div class='alert alert-success' role='alert'>RPS excluida com sucesso!</div>");
+        if ($_SESSION["erroRPS"] == "restaurado") {
+            $smarty->assign("erroRPS", "<div class='alert alert-success' role='alert'>RPS restaurada com sucesso!</div>");
         } else {
             $smarty->assign("erroRPS", "<div class='alert alert-danger' role='alert'>Erro. Algo deu errado.</div>");
         }
