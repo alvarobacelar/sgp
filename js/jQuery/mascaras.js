@@ -10,6 +10,8 @@ $(function() {
     $("#inputCpfCmt").mask("999.999.999-99");
     $("#inputValidadeCnh").mask("99/99/9999");
     $("#dataInicio").mask("99/99/9999");
+    $("#inputDataInicio").mask("99/99/9999");
+    $("#inputDataFim").mask("99/99/9999");
     $("#dataFim").mask("99/99/9999");
     $("#inputCep").mask("99.999-999");
     $("#inputTelefone").mask("(99) 9999-9999");

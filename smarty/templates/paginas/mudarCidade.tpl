@@ -24,13 +24,13 @@
             <div class="form-group">
                 <label for="inputDataInicio" class="col-sm-2 control-label">Data Inicio</label>
                 <div class="col-sm-2">
-                    <input type="date" class="form-control" id="inputDataInicio" name="inputDataInicio" value="" required="" placeholder="">
+                    <input type="text" class="form-control" id="inputDataInicio" name="inputDataInicio" value="" required="" placeholder="">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputdataFim" class="col-sm-2 control-label">Data Fim</label>
                 <div class="col-sm-2">
-                    <input type="date" class="form-control" id="inputDataFim" name="inputDataFim" value="" required="" placeholder="">
+                    <input type="text" class="form-control" id="inputDataFim" name="inputDataFim" value="" required="" placeholder="">
                 </div>
             </div>
             <div class="form-group">

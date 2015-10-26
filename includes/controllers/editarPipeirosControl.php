@@ -70,8 +70,12 @@ if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
             
             $editarPipeiro = new ManipulateData();
             $editarPipeiro->setTable("pipeiro");
+            
+            $dataInicioDB = $editarPipeiro->formata_data_db($dataInicio);
+            $dataFimDB = $editarPipeiro->formata_data_db($dataFim);
+            
             // ao alterar a cidade, o pipeiro fica com o status igual a 1, mostrando que está ativo no sistema.
-            $editarPipeiro->setCamposBanco("id_cidade_atuante='$idCidade', status_credenciamento='$status', data_ativo_credenciamento='$dataInicio', data_fim_credenciamento='$dataFim'");
+            $editarPipeiro->setCamposBanco("id_cidade_atuante='$idCidade', status_credenciamento='$status', data_ativo_credenciamento='$dataInicioDB', data_fim_credenciamento='$dataFimDB'");
             $editarPipeiro->setFieldId("id_pipeiro");
             $editarPipeiro->setValueId("$idPipeiro");
             $editarPipeiro->update();
