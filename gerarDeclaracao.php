@@ -42,13 +42,15 @@ if ($estaLogado == "SIM" && !isset($active)) {
             
             $dataHoje = date("Y-m-d");
             
+            
             // busca para pegar a id da rps solicitada para fazer a gravação de tickets recebido no banco
             $buscaRpsDec = new ManipulateData();
             $buscaRpsDec->setTable("rps,pipeiro");
-            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf2' AND data_pesquisa = '$mesRps' AND status_remove='0'");
+            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf2' AND mes_rps = '$mesRps' AND status_remove='0'");
             $buscaRpsDec->select();
             $dbRps = $buscaRpsDec->fetch_object();
             $idRps = $dbRps->id_rps;
+            $cidadeAtuacao = $dbRps->cidade_atuacao_rps;
             
             //adicionando quatidade de tickets que o pipeiro entregou
             $tickts = new ManipulateData();
@@ -62,6 +64,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
             $smarty->assign("om", $om);
             $smarty->assign("postoGrad", $postoGraduacao);
             $smarty->assign("declaracao", $declaracao); // dados do pipeiro para rps
+            $smarty->assign("cidadeAtuacao", $cidadeAtuacao); // cidade de atuacao
             $smarty->assign("mes", $mesRps);
             $smarty->assign("data", $gerarDeclaracao->mostrarData());
             $smarty->assign("ticket", $ticket);
