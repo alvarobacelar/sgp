@@ -17,6 +17,10 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $postoGraduacao = addslashes($_POST["inputPostoGraducao"]);
         $cpfMilitar = addslashes($_POST["cpfMilitar"]);
         
+        /*
+         *  Pegando os valores passado por post do cpf do pipeiro e separando o mês do cpf 
+         *  para poder pesquisar o mes corretamente
+         */
         list($cpf2, $mesRps) = explode("|", $cpf);
 
         if (!empty($cpf) && !empty($nomeMilitar) && !empty($cpfMilitar) && !empty($postoGraduacao)) {
