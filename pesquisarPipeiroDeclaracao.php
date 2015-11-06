@@ -16,10 +16,10 @@ if ($estaLogado == "SIM" && !isset($active)) {
     $buscaRPSDeclaracao = new ManipulateData();
     //buscando as rps geradas no dia da pesquisa por usuário
     $buscaRPSDeclaracao->setTable("rps,pipeiro");
-    $buscaRPSDeclaracao->setCampoBancoSelect("pipeiro.nome_pipeiro,pipeiro.cpf_pipeiro");
+    $buscaRPSDeclaracao->setCampoBancoSelect("pipeiro.nome_pipeiro,pipeiro.cpf_pipeiro,rps.mes_rps");
     $buscaRPSDeclaracao->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND nome_militar = '$nomeBuscaDec' AND data_pesquisa = '$dataHoje' AND status_remove='0' ORDER BY rps.id_rps DESC");
     $buscaRPSDeclaracao->select();
-
+    
     while ($valorBusca[] = $buscaRPSDeclaracao->fetch_object()) {
         $smarty->assign("valorBusca", $valorBusca);
     }

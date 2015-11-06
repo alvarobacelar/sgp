@@ -8,15 +8,14 @@
 
         <form action="gerarDeclaracao.php" method="post" id="formDeclaracao" name="formaDeclaracao" class="form-horizontal" role="form">
 
-
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="selectMes">Escolha o pipeiro</label>
                 <div class="col-sm-5">
-                    <select class="form-control" id="inputCpf" name="inputCpf" required="">
+                    <select class="form-control" id="inputCpfDeclacao" name="inputCpfDeclacao" required="">
                         {if !empty($valorBusca)}
                             <option value="">Escolha o pipeiro para gerar a declaração</option>
                             {foreach $valorBusca as $b}
-                                <option value="{$b->cpf_pipeiro}">{$b->nome_pipeiro}</option>
+                                <option value="{$b->cpf_pipeiro}|{$b->mes_rps}">{$b->nome_pipeiro} [{$b->mes_rps}]</option>
                             {/foreach}
                         {else}
                             <option value="">NENHUMA RPS GERADA HOJE</option>
@@ -40,7 +39,7 @@
                     <input class="form-control" type="text" id="ticket" name="ticket" required="" placeholder="Ex: 32 (trinta e dois) tickets">
                 </div>
             </div>
-            
+
             <!--
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="selectMes">Mês Pres. Conta</label>
@@ -64,7 +63,7 @@
                 </div>
             </div>
             -->
-            
+
             <div class="form-group">
                 <label class="col-sm-2 control-label" for="selectMes">Alterações</label>
                 <div class="col-sm-10">

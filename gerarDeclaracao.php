@@ -9,13 +9,15 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
     if ($_SESSION["nivel"] != "vis") {
 
-        $cpf = addslashes($_POST["inputCpf"]);
+        $cpf = addslashes($_POST["inputCpfDeclacao"]);
         //$mes = addslashes($_POST["selectMes"]);
         $obs = addslashes($_POST["alteracoes"]);
         $ticket = addslashes($_POST["ticket"]);
         $nomeMilitar = addslashes($_POST["nomeMilitar"]);
         $postoGraduacao = addslashes($_POST["inputPostoGraducao"]);
         $cpfMilitar = addslashes($_POST["cpfMilitar"]);
+        
+        list($cpf2, $mesRps) = explode("|", $cpf);
 
         if (!empty($cpf) && !empty($nomeMilitar) && !empty($cpfMilitar) && !empty($postoGraduacao)) {
 
@@ -24,11 +26,11 @@ if ($estaLogado == "SIM" && !isset($active)) {
             // selecionar pipeiro para gerar RPS
             $gerarDeclaracao = new ManipulateData();
             $gerarDeclaracao->setTable("pipeiro, cidade_atuante");
-            $gerarDeclaracao->setValueId("$cpf");
+            $gerarDeclaracao->setValueId("$cpf2");
             $gerarDeclaracao->selectRPS();
             $declaracao = $gerarDeclaracao->fetch_object();
 
-            // buscando a OM para mostrar na rps
+            // buscando a OM para mostrar na declaracao
             $buscaOM = new ManipulateData();
             $buscaOM->setTable("om");
             $buscaOM->select();
@@ -39,11 +41,10 @@ if ($estaLogado == "SIM" && !isset($active)) {
             // busca para pegar a id da rps solicitada para fazer a gravação de tickets recebido no banco
             $buscaRpsDec = new ManipulateData();
             $buscaRpsDec->setTable("rps,pipeiro");
-            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf' AND data_pesquisa = '$dataHoje' AND status_remove='0'");
+            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf2' AND data_pesquisa = '$mesRps' AND status_remove='0'");
             $buscaRpsDec->select();
             $dbRps = $buscaRpsDec->fetch_object();
             $idRps = $dbRps->id_rps;
-            $mes = $dbRps->mes_rps;
             
             //adicionando quatidade de tickets que o pipeiro entregou
             $tickts = new ManipulateData();
@@ -57,7 +58,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
             $smarty->assign("om", $om);
             $smarty->assign("postoGrad", $postoGraduacao);
             $smarty->assign("declaracao", $declaracao); // dados do pipeiro para rps
-            $smarty->assign("mes", $mes);
+            $smarty->assign("mes", $mesRps);
             $smarty->assign("data", $gerarDeclaracao->mostrarData());
             $smarty->assign("ticket", $ticket);
             $smarty->assign("nomeMilitar", $nomeMilitar);

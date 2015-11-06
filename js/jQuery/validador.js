@@ -47,9 +47,6 @@ $().ready(function() {
 $().ready(function() {
     $('#formDeclaracao').validate({
          rules:{
-            inputCpf: {
-                required : true,cpf      : 'both'
-            },
             inputNome: {
                 required : true, minlength: 5
             },
@@ -58,9 +55,6 @@ $().ready(function() {
             },
         },
         messages:{
-            inputCpf: {
-                required : "O CPF é obrigatório.", cpf      : "O CPF digitado é invalido"
-            },
             inputNome: {
                 required : "O nome é obrigatório.", minlength : "O seu nome deve conter no minimo 5 caracteres"
             },
