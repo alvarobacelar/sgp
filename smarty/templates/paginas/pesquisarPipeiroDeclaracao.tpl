@@ -34,9 +34,9 @@
             -->
 
             <div class="form-group form-group-lg">
-                <label class="col-sm-2 control-label" for="inputValor">Quantidade Tickets</label>
+                <label class="col-sm-2 control-label" for="inputValor">Quantidade de planilhas</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="ticket" name="ticket" required="" placeholder="Ex: 32 (trinta e dois) tickets">
+                    <input class="form-control" type="text" id="ticket" name="ticket" required="" placeholder="Ex: 01 (uma) ou 02 (duas)">
                 </div>
             </div>
 
