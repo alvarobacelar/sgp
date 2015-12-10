@@ -17,6 +17,10 @@ $bairroCmt = addslashes($_POST["inputBairroCmt"]);
 $pnrPnrCmt = addslashes($_POST["inputNrPNRCmt"]);
 $identidadeCmt = addslashes($_POST["inputIdentidadeCmt"]);
 $cpfCmt = addslashes($_POST["inputCpfCmt"]);
+$siglaOM = addslashes($_POST["inputSiglaOM"]);
+$chPipa  = addslashes($_POST["inputChPipa"]);
+$fiscContrato = addslashes($_POST["inputFiscContrato"]);
+$siglaPipaDesp = addslashes($_POST["inputSiglaPipa"]);
 
 session_start();
 
@@ -27,9 +31,8 @@ if ($_SESSION["nivel"] == "admin") {
 ########################################################################
 //Filedata é a variável que o flex envia com o arquivo para upload
     $fotoOM = $_FILES['fileLogoOM'];
-    $fotoRPS = $_FILES['fileCarimboRPS'];
 
-    if (!empty($fotoOM) || !empty($fotoRPS)) {
+    if (!empty($fotoOM)) {
 // Pasta onde o arquivo vai ser salvo
         $_UP['pasta'] = '../../imagens/';
 
@@ -62,9 +65,9 @@ if ($_SESSION["nivel"] == "admin") {
 // Faz a verificação da extensão do arquivo
 // $extensao = strtolower(end(explode('.', $_FILES['arquivo']['name'])));
         $arquivo = $_FILES['fileLogoOM']['name'];
-        $arquivo2 = $_FILES['fileCarimboRPS']['name'];
+        
         $extensao = substr($arquivo, - 3);
-        $extensao2 = substr($arquivo2, -3);
+        
         if (array_search($extensao, $_UP['extensoes']) === false && array_search($extensao2, $_UP['extensoes']) === false) {
 //echo "Por favor, envie arquivos com as seguintes extensões: jpg ou JPEG";
             $_SESSION["erroOM"] = "extensao";
@@ -83,14 +86,13 @@ if ($_SESSION["nivel"] == "admin") {
 // Primeiro verifica se deve trocar o nome do arquivo
 // Cria um nome baseado no UNIX TIMESTAMP atual e comextensão .jpg
             $nome_final = date("dmyhi") . "logo_om." . "$extensao";
-            $nome_final2 = date("dmyhi") . "despacho." . "$extensao2";
 
 // Depois verifica se é possível mover o arquivo para a pasta escolhida
-            if (move_uploaded_file($_FILES['fileLogoOM'] ['tmp_name'], $_UP['pasta'] . $nome_final) && move_uploaded_file($_FILES['fileCarimboRPS'] ['tmp_name'], $_UP['pasta'] . $nome_final2)) {
+            if (move_uploaded_file($_FILES['fileLogoOM'] ['tmp_name'], $_UP['pasta'] . $nome_final)) {
 // Upload efetuado com sucesso, exibe uma mensagem e um link para o arquivo
 //echo '<br /><a href="' . $_UP['pasta'] . $nome_final . '">Clique aqui para acessar o arquivo</a>;
                 $fotoOM = "imagens/" . $nome_final;
-                $fotoRPS = "imagens/" . $nome_final2;
+                
             } else {
                 $_SESSION["erroOM"] = "erroUpload";
                 header("location: ../../cadastrarOM.php");
@@ -101,7 +103,7 @@ if ($_SESSION["nivel"] == "admin") {
 ########################################################################
     }
 
-    if (!empty($nomeOM) && !empty($cnpj) && !empty($local)) {
+    if (!empty($_POST)) {
 
 
         $cadastraOM = new ManipulateData();
@@ -112,15 +114,15 @@ if ($_SESSION["nivel"] == "admin") {
         if ($cadastraOM->registros_retornados() >= 1) {
             $editaOM = new ManipulateData();
             $editaOM->setTable("om");
-            $editaOM->setCamposBanco("nome_om='$nomeOM', cnpj_om='$cnpj', local_om='$local', logo_om='$fotoOM', carimbo_rps_om='$fotoRPS', endereco_om='$enderecoOM', post_grad_cmt_om='$postoGradCmt', comandante_om='$nomeCmt', endereco_cmt_om='$enderecoCmt', bairro_cmt_om='$bairroCmt', cidade_cmt_om='$cidadeCmt', numero_pnr_cmt_om='$pnrPnrCmt', identidade_cmt_om='$identidadeCmt', cpf_cmt_om='$cpfCmt'");
+            $editaOM->setCamposBanco("sigla_om='$siglaOM', chefe_pipa='$chPipa', fisc_contrato='$fiscContrato', sigla_pipa_desp='$siglaPipaDesp'");
             $editaOM->setFieldId("id_om");
             $editaOM->setValueId($idOM);
             $editaOM->update();
             $_SESSION["erroOM"] = "editado";
             header("location: ../../cadastrarOM.php");
         } else { // se não houver om cadastrada, realiza o cadastro
-            $cadastraOM->setCamposBanco("nome_om, cnpj_om, local_om, logo_om, carimbo_rps_om, endereco_om, post_grad_cmt_om, comandante_om, endereco_cmt_om, bairro_cmt_om, cidade_cmt_om, numero_pnr_cmt_om, identidade_cmt_om, cpf_cmt_om");
-            $cadastraOM->setDados("'$nomeOM', '$cnpj', '$local', '$fotoOM', '$fotoRPS', '$enderecoOM', '$postoGradCmt', '$nomeCmt', '$enderecoCmt', '$bairroCmt', '$cidadeCmt', '$pnrPnrCmt', '$identidadeCmt', '$cpfCmt'");
+            $cadastraOM->setCamposBanco("nome_om, cnpj_om, local_om, logo_om, carimbo_rps_om, endereco_om, post_grad_cmt_om, comandante_om, endereco_cmt_om, bairro_cmt_om, cidade_cmt_om, numero_pnr_cmt_om, identidade_cmt_om, cpf_cmt_om, sigla_om, chefe_pipa, fisc_contrato, sigla_pipa_desp");
+            $cadastraOM->setDados("'$nomeOM', '$cnpj', '$local', '$fotoOM', '12', '$enderecoOM', '$postoGradCmt', '$nomeCmt', '$enderecoCmt', '$bairroCmt', '$cidadeCmt', '$pnrPnrCmt', '$identidadeCmt', '$cpfCmt', '$siglaOM', '$chPipa', '$fiscContrato', '$siglaPipaDesp'");
             $cadastraOM->insert();
 
             $_SESSION["erroOM"] = "cadastrado";

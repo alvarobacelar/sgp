@@ -2,27 +2,76 @@
 
     <div class="panel-heading">
 
-        <h2 class="panel-title">Cadastrar OM</h2>
+        {if !empty($om)}
+            <h2 class="panel-title">Mudar Parâmetros de DESPACHO</h2>
+        {else}
+            <h2 class="panel-title">Cadastrar OM</h2>
+        {/if}
     </div>
     <div class="panel-body">
 
-        {$erroOM} {if !empty($om)} <a href="includes/controllers/excluirOM.php?idExcluirOM={$om->id_om}" class="btn btn-danger">Excluir OM cadastrada</a> {/if}
+        {$erroOM} {if !empty($om)} <a href="includes/controllers/excluirOM.php?idExcluirOM={$om->id_om}" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign"></span> Excluir OM cadastrada</a> {/if}
         <form enctype="multipart/form-data" action="includes/controllers/cadastrarOMControl.php" method="post" id="formCadastrarOM" name="formCadastrarOM" class="form-horizontal" role="form">
 
             {if !empty($om)}
                 <input type="hidden" id="idOM" name="idOM" value="{$om->id_om}" >
+                <input type="hidden" id="valida" name="valida" value="fisc" >
 
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputPostoGradCmt">Post/Grad Comandante</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputPostoGradCmt" name="inputPostoGradCmt" required="" value="{if !empty($om)}{$om->post_grad_cmt_om}{/if}" placeholder="Ex: Ten Cel">
+                    </div>
+                </div>
+                
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputComandanteCmt">Comandante</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="inputComandanteCmt" name="inputComandanteCmt" required="" value="{if !empty($om)}{$om->comandante_om}{/if}" placeholder="Ex: Marcos Gomes Paulino">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputChPipa">Chefe da Op Pipa</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="inputChPipa" name="inputChPipa" required="" value="{if !empty($om)}{$om->chefe_pipa}{/if}" placeholder="Ex: FREDERICO JORGE DA SILVA MOTA– Ten Cel R1">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputFiscContrato">Fiscal de Contrato</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="inputFiscContrato" name="inputFiscContrato" required="" value="{if !empty($om)}{$om->fisc_contrato}{/if}" placeholder="Ex: ANDERSON JOSÉ ISMAEL SILVEIRA – 1º Ten">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputSiglaOM">Sigla OM</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputSiglaOM" name="inputSiglaOM" required="" value="{if !empty($om)}{$om->sigla_om}{/if}" placeholder="Ex: 25º BC">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputSiglaPipa">Sigla Op Pipa</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputSiglaPipa" value="{if !empty($om)}{$om->sigla_pipa_desp}{/if}" name="inputSiglaPipa" required="" value="{if !empty($om)}{$om->sigla_pipa_desp}{/if}" placeholder="EX: OP PIPA 2015">
+                    </div>
+                </div>
+
+                <!--
                 <div class="form-group form-group-sm">
                     <label class="col-sm-3 control-label" for="inputSenha">Imagem do Carimbo da RPS</label>
                     <div class="col-sm-4">
                         <input class="form-control" type="file" id="fileCarimboRPS" value="" name="fileCarimboRPS" title="Faça o upload da imagem digitalizada do carimbo que saiŕa junto com a RPS"><br />
-                        {if !empty($om)}<img src="{$om->carimbo_rps_om}" width="400" alt="carimbo rps">{/if}
-                    </div>
-                </div>
+                {if !empty($om)}<img src="{$om->carimbo_rps_om}" width="400" alt="carimbo rps">{/if}
+            </div>
+        </div>
+                -->
 
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-success">Trocar despacho</button>
+                    <div class="col-sm-offset-3 col-sm-10">
+                        <button type="submit" class="btn btn-success">Alterar Parâmetros</button>
                     </div>
                 </div>
             {else}
@@ -106,6 +155,34 @@
                 </div>
 
                 <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputChPipa">Chefe da OP Pipa</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="inputChPipa" value="" name="inputChPipa" required="" value="" placeholder="EX: FREDERICO JORGE DA SILVA MOTA– Ten Cel R1">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputFiscCont">Fiscal de Contrato</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" id="inputFiscContrato" value="" name="inputFiscContrato" required="" value="" placeholder="Ex: ANDERSON JOSÉ ISMAEL SILVEIRA – 1º Ten">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputSiglaOM">Sigla da OM</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputSiglaOM" value="" name="inputSiglaOM" required="" value="" placeholder="EX: 25º BC">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputSiglaPipa">Sigla Op Pipa</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputSiglaPipa" value="" name="inputSiglaPipa" required="" value="" placeholder="EX: OP PIPA 2015">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
                     <label class="col-sm-3 control-label" for="inputSenha">Logo da OM</label>
                     <div class="col-sm-4">
                         <input class="form-control" type="file" id="fileLogoOM" value="" name="fileLogoOM" {if empty($om)} required=""{/if}><br />
@@ -113,13 +190,15 @@
                     </div>
                 </div>
 
+                <!--
                 <div class="form-group form-group-sm">
                     <label class="col-sm-3 control-label" for="inputSenha">Imagem do Carimbo da RPS</label>
                     <div class="col-sm-4">
                         <input class="form-control" type="file" id="fileCarimboRPS" value="" name="fileCarimboRPS" title="Faça o upload da imagem digitalizada do carimbo que saiŕa junto com a RPS"><br />
-                        {if !empty($om)}<img src="{$om->carimbo_rps_om}" width="400" alt="carimbo rps">{/if}
-                    </div>
-                </div>
+                {if !empty($om)}<img src="{$om->carimbo_rps_om}" width="400" alt="carimbo rps">{/if}
+            </div>
+        </div>
+                -->
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
