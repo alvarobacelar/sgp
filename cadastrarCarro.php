@@ -6,7 +6,7 @@ require_once './includes/funcoes/verifica.php';
 
 if ($estaLogado == "SIM" && !isset($active)) {
 
-    if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
+    if ($_SESSION["nivel"] == "admin" || $funcao == "Credenciamento") {
         
         
         // VERIFICANDO OS RETORNOS DE CADASTRO PARA MOSTRA AO USUÁRIO
