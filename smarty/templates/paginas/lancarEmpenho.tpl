@@ -16,54 +16,91 @@
     <div class="table-responsive">
         <table class="table table-striped">
 
-            {if isset($verCidade)}
+            {if isset($nomePipeiro)}
 
                 <th><center>Pipeiro</center></th>
                 <th><center>NC, NE, valor, mês ..</center></th>
 
 
-                {foreach $verCidade as $c}
+                {section name=e loop=$nomePipeiro}
                     <tr class="active">
-                        <td width="300">{$c->nome_pipeiro}</td>
-                        <td class="text-center">
-                            <form action="includes/controllers/cadastrarNE.php" method="post" name="cadastrar" class="form-inline">
-                                <div class="form-group form-group-sm">
-                                    <input class="form-control" type="text" id="inputNC" value="" name="inputNC" required="" placeholder="NC">
-                                </div>
-                                <div class="form-group form-group-sm">
-                                    <input class="form-control" type="text" id="inputNE" value="" name="inputNE" required="" placeholder="NE">
-                                </div>
-                                <div class="form-group form-group-sm">
-                                    <input class="form-control" type="text" id="inputValorEmpenho" value="" name="inputValorEmpenho" required="" placeholder="Valor R$">
-                                </div>
-                                <div class="form-group form-group-sm">
-                                    <select class="form-control" id="selectMesEmpenho" name="selectMesEmpenho" required="">
-                                        <option value="">Mês Pagamento</option>
-                                        <option value="JANEIRO">JANEIRO</option>
-                                        <option value="FEVEREIRO">FEVEREIRO</option>
-                                        <option value="MARÇO">MARÇO</option>
-                                        <option value="ABRIL">ABRIL</option>
-                                        <option value="MAIO">MAIO</option>
-                                        <option value="JUNHO">JUNHO</option>
-                                        <option value="JULHO">JULHO</option>
-                                        <option value="AGOSTO">AGOSTO</option>
-                                        <option value="SETEMBRO">SETEMBRO</option>
-                                        <option value="OUTUBRO">OUTUBRO</option>
-                                        <option value="NOVEMBRO">NOVEMBRO</option>
-                                        <option value="DEZEMBRO">DEZEMBRO</option>
-                                    </select>
-                                </div>
-                                <!--
-                                <div class="form-group form-group-sm">
-                                    <input class="form-control" type="text" id="inputAnoEmpenho" value="{$smarty.now|date_format:"%Y"}" name="inputAnoEmpenho" required="">
-                                </div>
-                                -->
-                                <button type="submit" class="btn btn-primary">Enviar</button>
-                            </form>
-                        </td>
+
+                        {if !isset($nc_empenho[e])}
+                            <td width="300">{$nomePipeiro[e]}</td>
+                            <td class="text-center">
+                                {if !empty($saldoEmpenho[e])}
+                                    <span class="label label-default">Saldo Anterior {$saldoEmpenho[e]}</span>
+                                {/if}
+                                <form action="includes/controllers/cadastrarEmpenho.php" method="post" name="cadastrar" class="form-inline">
+
+                                    <input type="hidden" id="inputCidadeEmpenho" name="inputCidadeEmpenho" value="{$idCidadeAtua[e]}">
+                                    <input type="hidden" id="inputPipeiroEmpenho" name="inputPipeiroEmpenho" value="{$idPipeiro[e]}">
+                                    {if !empty($saldoEmpenho[e])}
+                                        <input type="hidden" id="inputSaldoEmpenho" name="inputSaldoEmpenho" value="{$saldoEmpenho[e]}">
+                                    {/if}
+
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputNC" value="" name="inputNC" required="" placeholder="NC">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputNE" value="" name="inputNE" required="" placeholder="NE">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputValorEmpenho" value="" name="inputValorEmpenho" required="" placeholder="Valor R$">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <select class="form-control" id="selectMesEmpenho" name="selectMesEmpenho" required="">
+                                            <option value="">Mês Pagamento</option>
+                                            <option value="JANEIRO">JANEIRO</option>
+                                            <option value="FEVEREIRO">FEVEREIRO</option>
+                                            <option value="MARÇO">MARÇO</option>
+                                            <option value="ABRIL">ABRIL</option>
+                                            <option value="MAIO">MAIO</option>
+                                            <option value="JUNHO">JUNHO</option>
+                                            <option value="JULHO">JULHO</option>
+                                            <option value="AGOSTO">AGOSTO</option>
+                                            <option value="SETEMBRO">SETEMBRO</option>
+                                            <option value="OUTUBRO">OUTUBRO</option>
+                                            <option value="NOVEMBRO">NOVEMBRO</option>
+                                            <option value="DEZEMBRO">DEZEMBRO</option>
+                                        </select>
+                                    </div>
+                                    <!--
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputAnoEmpenho" value="{$smarty.now|date_format:"%Y"}" name="inputAnoEmpenho" required="">
+                                    </div>
+                                    -->
+                                    <button type="submit" class="btn btn-primary">Enviar</button>
+                                </form>
+                            {else}
+                            <td width="300" class="success"><strong>{$nomePipeiro[e]}</strong></td>
+                            <td class="text-center success">
+                                {* if !empty($saldoEmpenho[e])}
+                                <small><span class="label label-default">Saldo Anterior {$saldoEmpenho[e]}</span></small>
+                                {/if *}
+                                <form action="#" method="post" name="cadastrar" class="form-inline">
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputNC" value="{$nc_empenho[e]}" disabled="" name="inputNC" required="" placeholder="NC">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputNE" value="{$ne_empenho[e]}" disabled="" name="inputNE" required="" placeholder="NE">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <input class="form-control" type="text" id="inputValorEmpenho" value="{$valor_empenho[e]}" disabled="" name="inputValorEmpenho" required="" placeholder="Valor R$">
+                                    </div>
+                                    <div class="form-group form-group-sm">
+                                        <select class="form-control" id="selectMesEmpenho" disabled="" name="selectMesEmpenho" required="">
+                                            <option value="{$mes_pgto_empenho[e]}">{$mes_pgto_empenho[e]}</option>
+                                        </select>
+                                    </div>
+                                    <a onclick="delEmpenho({$id_empenho[e]}, {$idCidadeAtua[e]})" class="btn btn-danger">Excluir</a>
+                                </form>
+                            </td>
+                        {/if}
+
 
                     </tr>
-                {/foreach}
+                {/section}
 
             {else}
                 <tr>

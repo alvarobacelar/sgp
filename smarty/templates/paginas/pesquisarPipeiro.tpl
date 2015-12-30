@@ -45,12 +45,13 @@
                         <option value="DEZEMBRO">DEZEMBRO</option>
                     </select>
                     <div class="input-group-addon">
-                        de <strong>{$smarty.now|date_format:"%Y"}</strong>
+                        de <strong>{$om->ano_prestacao}</strong>
                     </div>
                 </div>
 
             </div>
 
+            {*
             <div class="row form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="selectMes">Mudar Ano</label>
                 <div class="input-group col-sm-5">
@@ -75,8 +76,7 @@
                     </div>
                 </div>
             </div>
-
-
+            *}
 
             <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
             <button type="reset" class="btn btn-default btn-lg">Cancelar</button>

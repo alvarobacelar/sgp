@@ -11,9 +11,15 @@
         <form action="includes/controllers/editarUsuarioControl.php" method="post" name="cadastrar" class="form-horizontal" role="form" onSubmit="return verificaSenha()">
             <input type="hidden" name="inputId" id="inputId" value="{$usuario->id_usuario}" />
             <div class="form-group form-group-sm">
-                <label class="col-sm-2 control-label" for="inputNome">Nome</label>
+                <label class="col-sm-2 control-label" for="inputNome">Nome completo</label>
                 <div class="col-sm-6">
                     <input class="form-control" type="text" id="inputNome" name="inputNome" required="" value="{$usuario->nome_usuario}">
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="inputNomeGerra">Nome de guerra</label>
+                <div class="col-sm-3">
+                    <input class="form-control" type="text" id="inputNomeGerra" name="inputNomeGerra" value="{$usuario->nome_guerra}" required="" placeholder="Nome de Guerra">
                 </div>
             </div>
             <div class="form-group form-group-sm">
@@ -44,6 +50,19 @@
                 <div class="col-sm-3">
                     <input class="form-control" type="password" value="" id="inputSenha" name="inputSenha">
                 </div>
+                <div class="col-sm-3">
+                    <select class="form-control" id="inputFuncao" name="inputFuncao" required="">
+                        <option value="{$usuario->funcao_usuario}">{$usuario->funcao_usuario}</option>
+                        <option value="Administrador do Sistema">Administrador do Sistema</option>
+                        <option value="Chefe da prestação de contas">Chefe da prestação de contas</option>
+                        <option value="Prestação de conta">Prestação de conta</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="GCDA">GCDA</option>
+                        <option value="Aux Operação Pipa">Aux Operação Pipa</option>
+                        <option value="Credenciamento">Credenciamento</option>
+                        <option value="SALC">SALC</option>
+                    </select>
+                </div>
             </div>
             <div class="form-group form-group-sm">
                 <label class="col-sm-2 control-label" for="inputSenha2">Repita a senha</label>
@@ -51,7 +70,10 @@
                     <input class="form-control" type="password" id="inputSenha2" onblur="verificaSenha()" name="inputSenha2">
                     <div id="erro-senha"></div>
                 </div>
-                <div class="col-sm-3">
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label" for="inputFuncao">Posto/Graduação</label>
+                <div class="col-sm-2">
                     <select class="form-control" id="selectPosto" name="selectPosto" required="">
                         <option value="{$usuario->posto_grad_usuario}" selected="">{$usuario->posto_grad_usuario}</option>
                         <option value="Gal">General</option>
@@ -68,22 +90,6 @@
                         <option value="3º Sgt">3º Sargento</option>
                         <option value="Cb">Cabo</option>
                         <option value="Sd">Soldado</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group form-group-sm">
-                <label class="col-sm-2 control-label" for="inputFuncao">Função</label>
-                <div class="col-sm-3">
-                    <select class="form-control" id="inputFuncao" name="inputFuncao" required="">
-                        <option value="{$usuario->funcao_usuario}">{$usuario->funcao_usuario}</option>
-                        <option value="Administrador do Sistema">Administrador do Sistema</option>
-                        <option value="Chefe da prestação de contas">Chefe da prestação de contas</option>
-                        <option value="Prestação de conta">Prestação de conta</option>
-                        <option value="Financeiro">Financeiro</option>
-                        <option value="GCDA">GCDA</option>
-                        <option value="Aux Operação Pipa">Aux Operação Pipa</option>
-                        <option value="Credenciamento">Credenciamento</option>
-                        <option value="SALC">SALC</option>
                     </select>
                 </div>
                 <!--

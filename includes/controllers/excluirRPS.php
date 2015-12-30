@@ -7,7 +7,7 @@ if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
 
     if (isset($_GET["idExcluirRPS"])) {
 
-        $milRemove = addslashes($_SESSION["login"]);
+        $milRemove = $_SESSION["posto"] ." ". $_SESSION["nomeGuerra"];
         $idExcluirRPS = addslashes($_GET["idExcluirRPS"]);
 
         $del = new ManipulateData();

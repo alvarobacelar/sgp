@@ -34,9 +34,16 @@
             -->
 
             <div class="form-group form-group-lg">
-                <label class="col-sm-2 control-label" for="inputValor">Quantidade de planilhas</label>
-                <div class="col-sm-9">
+                <label class="col-sm-2 control-label" for="ticket">Quantidade de planilhas</label>
+                <div class="col-sm-5">
                     <input class="form-control" type="text" id="ticket" name="ticket" required="" placeholder="Ex: 01 (uma) ou 02 (duas)">
+                </div>
+            </div>
+            
+            <div class="form-group form-group-lg">
+                <label class="col-sm-2 control-label" for="assinatura">Quantidade de assinaturas</label>
+                <div class="col-sm-5">
+                    <input class="form-control" type="text" id="assinatura" name="assinatura" required="" placeholder="Ex: 01 (uma) ou 02 (duas)">
                 </div>
             </div>
 
@@ -71,6 +78,7 @@
                 </div>
             </div>
 
+            
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="inputValor">Nome do militar</label>
                 <div class="col-sm-9">

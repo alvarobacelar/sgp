@@ -182,7 +182,7 @@
                     </p>
                     
                     {* inserindo o pipeiro de modo desativado do sistema *}
-                    <input type="hidden" name="selectIdCidade" id="selectIdCidade" value="{$c->id_cidade_atuante}">
+                    <input type="hidden" name="selectIdCidade" id="selectIdCidade" value="10">
                     
                     <div class="form-group">
                         <label for="inpuIdCarro" class="col-sm-2 control-label">Qual Carro*</label>

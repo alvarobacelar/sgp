@@ -1,10 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
 
         {literal}
             <style>   
+                .pq-lef{text-align: left; font-size: 13px;}
+                .pequeno{font-size: 13px;}
                 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
                 .clearfix:after{clear:both;}
                 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
@@ -54,6 +56,7 @@
         {/literal}    
         <title>RPS - {$rps->nome_pipeiro|upper}</title>
     </head>
+
     <body>
 
 
@@ -189,14 +192,21 @@
 
 
         {else}
-            <h2 class="text-danger" style="font-size: 11px;"><center>Não há cadastro para este pipeiro</center></h2>
-                {/if}
+            <h2 class="text-danger" style="font-size: 11px;">
+                <center>
+                    Não há cadastro para este pipeiro
+                </center>
+            </h2>
+        {/if}
 
         {if $om->carimbo_rps_om != "" && $mostraDespacho == "S"}
-            <br />
+            
+            {include file="paginas/despacho.tpl"}
+            <!--
             <div>
                 <center><img src="{$om->carimbo_rps_om}" alt="carimbo om"></center>
             </div>
+            -->
         {/if}
 
     </body>

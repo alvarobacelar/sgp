@@ -16,10 +16,10 @@ if ($estaLogado == "SIM" && !isset($active)) {
                 $smarty->assign("erroPipeiro", "<div class='alert alert-danger' role='alert'>Erro ao cadastrar o pipeiro</div>");
             } else if ($_SESSION["erroPipeiro"] == "mudarCarro") {
                 $smarty->assign("erroPipeiro", "<div class='alert alert-success' role='alert'>Carro alterado para o pipeiro</div>");
-            } else if ($_SESSION["erroPipeiro"] == "duplicado") {
-                $smarty->assign("erroPipeiro", "<div class='alert alert-danger' role='alert'>Erro! Pipeiros Já cadastrado</div>");
-            } else if ($_SESSION["erroPipeiro"] == "carro") {
-                $smarty->assign("erroPipeiro", "<div class='alert alert-danger' role='alert'>Erro! Carro cadastrado pra outro pipeiro</div>");
+            } else if ($_SESSION["erroPipeiro"] == "liquidado") {
+                $smarty->assign("erroPipeiro", "<div class='alert alert-success' role='alert'>Valor Liquidado! </div>");
+            } else if ($_SESSION["erroPipeiro"] == "naoliquidado") {
+                $smarty->assign("erroPipeiro", "<div class='alert alert-danger' role='alert'>Erro ao liquidar o empenho</div>");
             } else if ($_SESSION["erroPipeiro"] == "editado") {
                 $smarty->assign("erroPipeiro", "<div class='alert alert-success' role='alert'>Pipeiro editado com sucesso!</div>");
             } else if ($_SESSION["erroPipeiro"] == "cidade") {
@@ -48,7 +48,9 @@ if ($estaLogado == "SIM" && !isset($active)) {
          * Buscando no banco de dados o ultimo empenho lançado
          */
         $buscaEmpenho = new ManipulateData();
-        $buscaEmpenhoAnt = new ManipulateData();
+        $buscaRps = new ManipulateData();
+        
+        $smarty->assign("mesAnt",$buscaEmpenho->mostrarMesAnt());
 
         // INACABADO
 
@@ -106,7 +108,27 @@ if ($estaLogado == "SIM" && !isset($active)) {
                 $smarty->assign("idCidadeAtua", $idCidadeAtua);
                 $smarty->assign("idPipeiro", $idPipeiroEmp);
 
-                $mesEmp = $buscaEmpenho->mostrarMes();
+                /*
+                 * Buscando os dados da RPS para liquidação
+                 */
+                $mesRps = $buscaRps->mostrarMesAnt();
+                $buscaRps->setTable("rps, pipeiro");
+                $buscaRps->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro "
+                        . "AND id_pipeiro = '$dbVerCidade->id_pipeiro'"
+                        . "AND mes_rps = '$mesRps'"
+                        . "AND status_remove='0'");
+                $buscaRps->select();
+                $valRps = $buscaRps->fetch_object();
+                
+                if (!empty($valRps)) {
+                    $valorRps[] = $valRps->valor_liquido_rps;
+                    $smarty->assign("valorRps", $valorRps);
+                }
+
+                /*
+                 * Buscando no banco de dados o último empenho do mês corrente. 
+                 */
+                $mesEmp = $buscaEmpenho->mostrarMesAnt();
                 $buscaEmpenho->setTable("empenho, liquidacao_empenho, pipeiro");
                 $orderBusca = "WHERE empenho.id_empenho = liquidacao_empenho.empenho_id_empenho 
                       AND liquidacao_empenho.pipeiro_id_pipeiro = pipeiro.id_pipeiro 
@@ -115,33 +137,20 @@ if ($estaLogado == "SIM" && !isset($active)) {
                 $buscaEmpenho->setOrderTable($orderBusca);
                 $buscaEmpenho->select();
                 $buscaEmp = $buscaEmpenho->fetch_object();
-
-                /*
-                 * Buscando valor do saldo anterior
-                 */
-                $mesEmpAnt = $buscaEmpenho->mostrarMesAnt();
-                $buscaEmpenhoAnt->setTable("empenho, liquidacao_empenho, pipeiro");
-                $orderBuscaAnt = "WHERE empenho.id_empenho = liquidacao_empenho.empenho_id_empenho 
-                      AND liquidacao_empenho.pipeiro_id_pipeiro = pipeiro.id_pipeiro 
-                      AND pipeiro_id_pipeiro = '$dbVerCidade->id_pipeiro'
-                      AND empenho.mes_pgto_empenho  = '$mesEmpAnt'";
-                $buscaEmpenhoAnt->setOrderTable($orderBuscaAnt);
-                $buscaEmpenhoAnt->select();
-                $buscaEmpAnt = $buscaEmpenhoAnt->fetch_object();
-
-                if (!empty($buscaEmpAnt)) {
-                    $saldoEmpenho[] = $buscaEmpAnt->saldo_liquidacao;
-                    $smarty->assign("saldoEmpenho", $saldoEmpenho);
-                }
-
                 if (!empty($buscaEmp)) {
                     $idEmpenho[] = $buscaEmp->id_empenho;
+                    $idLiquida[] = $buscaEmp->id_liquidacao;
                     $credito[] = $buscaEmp->nc_empenho;
                     $empenho[] = $buscaEmp->ne_empenho;
                     $mesEmpenho[] = $buscaEmp->mes_pgto_empenho;
                     $valorEmpenho[] = $buscaEmp->valor_empenho;
+                    $valorLiq[] = $buscaEmp->saldo_liquidacao;
+                    $ordBanco[] = $buscaEmp->nr_ob_liquidacao;
 
+                    $smarty->assign("ordBanco", $ordBanco);
+                    $smarty->assign("valLiq", $valorLiq);
                     $smarty->assign("id_empenho", $idEmpenho);
+                    $smarty->assign("id_liquidacao", $idLiquida);
                     $smarty->assign("nc_empenho", $credito);
                     $smarty->assign("ne_empenho", $empenho);
                     $smarty->assign("mes_pgto_empenho", $mesEmpenho);
@@ -153,7 +162,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
         }
 
         $smarty->assign("nivel", $_SESSION["nivel"]);
-        $smarty->assign("conteudo", "paginas/lancarEmpenho.tpl");
+        $smarty->assign("conteudo", "paginas/liquidarEmpenho.tpl");
         $smarty->display("HTML.tpl");
     } else {
         header("location: ./erro.php");

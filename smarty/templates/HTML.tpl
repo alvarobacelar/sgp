@@ -132,9 +132,8 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerenciamento financeiro<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="empenho.php">Lançar empenho</a></li>
-                                    <li><a href="">Opção 2</a></li>
-                                    <li><a href="">Opção 3</a></li>
+                                    <li><a href="empenho.php"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Lançar empenho</a></li>
+                                    <li><a href="liquidacao.php"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Liquidar empenho</a></li>
                                 </ul>
                             </li>
                         {/if}
@@ -206,7 +205,7 @@
         <p class="text-center rodape">
             ©2014 - SGP Sistema de gerenciamento e prestação de contas de pipeiros<br />
             Idealizado, projetado e construído por <a href="http://alvarobacelar.com" target="_blank">Álvaro Bacelar</a><br />
-            Versão 1.6.2
+            {$versao}
         </p>
 
 

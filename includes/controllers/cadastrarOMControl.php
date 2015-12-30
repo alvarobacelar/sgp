@@ -21,6 +21,7 @@ $siglaOM = addslashes($_POST["inputSiglaOM"]);
 $chPipa  = addslashes($_POST["inputChPipa"]);
 $fiscContrato = addslashes($_POST["inputFiscContrato"]);
 $siglaPipaDesp = addslashes($_POST["inputSiglaPipa"]);
+$anoPrestacao = addslashes($_POST["inputAno"]);
 
 session_start();
 
@@ -114,15 +115,15 @@ if ($_SESSION["nivel"] == "admin") {
         if ($cadastraOM->registros_retornados() >= 1) {
             $editaOM = new ManipulateData();
             $editaOM->setTable("om");
-            $editaOM->setCamposBanco("sigla_om='$siglaOM', chefe_pipa='$chPipa', fisc_contrato='$fiscContrato', sigla_pipa_desp='$siglaPipaDesp'");
+            $editaOM->setCamposBanco("sigla_om='$siglaOM', chefe_pipa='$chPipa', fisc_contrato='$fiscContrato', sigla_pipa_desp='$siglaPipaDesp', ano_prestacao='$anoPrestacao'");
             $editaOM->setFieldId("id_om");
             $editaOM->setValueId($idOM);
             $editaOM->update();
             $_SESSION["erroOM"] = "editado";
             header("location: ../../cadastrarOM.php");
         } else { // se não houver om cadastrada, realiza o cadastro
-            $cadastraOM->setCamposBanco("nome_om, cnpj_om, local_om, logo_om, carimbo_rps_om, endereco_om, post_grad_cmt_om, comandante_om, endereco_cmt_om, bairro_cmt_om, cidade_cmt_om, numero_pnr_cmt_om, identidade_cmt_om, cpf_cmt_om, sigla_om, chefe_pipa, fisc_contrato, sigla_pipa_desp");
-            $cadastraOM->setDados("'$nomeOM', '$cnpj', '$local', '$fotoOM', '12', '$enderecoOM', '$postoGradCmt', '$nomeCmt', '$enderecoCmt', '$bairroCmt', '$cidadeCmt', '$pnrPnrCmt', '$identidadeCmt', '$cpfCmt', '$siglaOM', '$chPipa', '$fiscContrato', '$siglaPipaDesp'");
+            $cadastraOM->setCamposBanco("nome_om, cnpj_om, local_om, logo_om, carimbo_rps_om, endereco_om, post_grad_cmt_om, comandante_om, endereco_cmt_om, bairro_cmt_om, cidade_cmt_om, numero_pnr_cmt_om, identidade_cmt_om, cpf_cmt_om, sigla_om, chefe_pipa, fisc_contrato, sigla_pipa_desp, ano_prestacao");
+            $cadastraOM->setDados("'$nomeOM', '$cnpj', '$local', '$fotoOM', '12', '$enderecoOM', '$postoGradCmt', '$nomeCmt', '$enderecoCmt', '$bairroCmt', '$cidadeCmt', '$pnrPnrCmt', '$identidadeCmt', '$cpfCmt', '$siglaOM', '$chPipa', '$fiscContrato', '$siglaPipaDesp', '$anoPrestacao'");
             $cadastraOM->insert();
 
             $_SESSION["erroOM"] = "cadastrado";

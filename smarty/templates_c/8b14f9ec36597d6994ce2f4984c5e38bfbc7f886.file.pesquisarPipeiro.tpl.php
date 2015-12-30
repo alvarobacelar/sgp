@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-06-01 11:37:17
+<?php /* Smarty version Smarty-3.1.13, created on 2015-12-29 21:43:21
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/pesquisarPipeiro.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19340971905550fe6e1521e9-47386549%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '8b14f9ec36597d6994ce2f4984c5e38bfbc7f886' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/pesquisarPipeiro.tpl',
-      1 => 1431538375,
+      1 => 1451432598,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,11 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'variables' => 
   array (
     'cpfBusca' => 0,
+    'om' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5550fe6e1b07c0_11890447')) {function content_5550fe6e1b07c0_11890447($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/www/html/sisGerPipa/smarty/lib/plugins/modifier.date_format.php';
-?>
+<?php if ($_valid && !is_callable('content_5550fe6e1b07c0_11890447')) {function content_5550fe6e1b07c0_11890447($_smarty_tpl) {?>
 <div class="panel panel-primary">
 
     <div class="panel-heading">
@@ -73,39 +73,14 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         <option value="DEZEMBRO">DEZEMBRO</option>
                     </select>
                     <div class="input-group-addon">
-                        de <strong><?php echo smarty_modifier_date_format(time(),"%Y");?>
+                        de <strong><?php echo $_smarty_tpl->tpl_vars['om']->value->ano_prestacao;?>
 </strong>
                     </div>
                 </div>
 
             </div>
 
-            <div class="row form-group form-group-lg">
-                <label class="col-sm-2 control-label" for="selectMes">Mudar Ano</label>
-                <div class="input-group col-sm-5">
-                    <input class="form-control" type="text" id="inputAno" name="inputAno" disabled="disabled" value="" >
-                    <div class="input-group-addon">
-                        Mudar o ano? 
-                        
-                            <label>
-                                <input type="radio" name="optionsRadios" id="radiosSuccess1" value="option1"  onclick="if (document.getElementById('inputAno').disabled == true) {
-                                        document.getElementById('inputAno').disabled = false
-                                        }">
-                                Sim
-                            </label>
-
-                            <label>
-                                <input type="radio" name="optionsRadios" id="radiosSuccess2" value="option2" checked onclick="if (document.getElementById('inputAno').disabled == false) {
-                                        document.getElementById('inputAno').disabled = true
-                                        }" >
-                                Não
-                            </label>
-                        
-                    </div>
-                </div>
-            </div>
-
-
+            
 
             <button type="submit" class="btn btn-primary btn-lg">Buscar</button>
             <button type="reset" class="btn btn-default btn-lg">Cancelar</button>

@@ -6,7 +6,7 @@ require_once './includes/funcoes/verifica.php';
 
 if ($estaLogado == "SIM" && !isset($active)) {
 
-    if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
+    if ($_SESSION["nivel"] == "admin" || $funcao == "Credenciamento") {
 
         // verificando se houve algum erro no cadastro da cidade para retornar um freaadbak para o usuario
         if(isset($_SESSION["erro"])){

@@ -39,6 +39,7 @@ class LoginIn {
             $_SESSION["idSession"] = $session_id;
             $_SESSION["login"] = $obj->login_usuario;
             $_SESSION["nome"] = $obj->nome_usuario;
+            $_SESSION["nomeGuerra"] = $obj->nome_guerra;
             $_SESSION["funcao"] = $obj->funcao_usuario;
             $_SESSION["posto"] = $obj->posto_grad_usuario;
             $_SESSION["cpf"] = $obj->cpf_usuario;

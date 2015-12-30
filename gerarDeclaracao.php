@@ -13,10 +13,11 @@ if ($estaLogado == "SIM" && !isset($active)) {
         //$mes = addslashes($_POST["selectMes"]);
         $obs = addslashes($_POST["alteracoes"]);
         $ticket = addslashes($_POST["ticket"]);
+        $assinatura = addslashes($_POST["assinatura"]);
         $nomeMilitar = addslashes($_POST["nomeMilitar"]);
         $postoGraduacao = addslashes($_POST["inputPostoGraducao"]);
         $cpfMilitar = addslashes($_POST["cpfMilitar"]);
-        
+
         /*
          *  Pegando os valores passado por post do cpf do pipeiro e separando o mês do cpf 
          *  para poder pesquisar o mes corretamente
@@ -39,19 +40,20 @@ if ($estaLogado == "SIM" && !isset($active)) {
             $buscaOM->setTable("om");
             $buscaOM->select();
             $om = $buscaOM->fetch_object();
+            $anoRps = $om->ano_prestacao;
             
             $dataHoje = date("Y-m-d");
-            
-            
+
             // busca para pegar a id da rps solicitada para fazer a gravação de tickets recebido no banco
             $buscaRpsDec = new ManipulateData();
             $buscaRpsDec->setTable("rps,pipeiro");
-            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf2' AND mes_rps = '$mesRps' AND status_remove='0'");
+            // consertado um bug que buscava a rps do ano passado.  
+            $buscaRpsDec->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpf2' AND mes_rps = '$mesRps' AND ano_rps = '$anoRps' AND status_remove='0'");
             $buscaRpsDec->select();
             $dbRps = $buscaRpsDec->fetch_object();
             $idRps = $dbRps->id_rps;
-            $cidadeAtuacao = $dbRps->cidade_atuacao_rps;
-            
+            $cidadeAtuacaoRPS = $dbRps->cidade_atuacao_rps;
+
             //adicionando quatidade de tickets que o pipeiro entregou
             $tickts = new ManipulateData();
             $tickts->setTable("rps");
@@ -64,13 +66,16 @@ if ($estaLogado == "SIM" && !isset($active)) {
             $smarty->assign("om", $om);
             $smarty->assign("postoGrad", $postoGraduacao);
             $smarty->assign("declaracao", $declaracao); // dados do pipeiro para rps
-            $smarty->assign("cidadeAtuacao", $cidadeAtuacao); // cidade de atuacao
+            $smarty->assign("cidadeAtuacaoRps", $cidadeAtuacaoRPS); // cidade de atuacao
             $smarty->assign("mes", $mesRps);
             $smarty->assign("data", $gerarDeclaracao->mostrarData());
             $smarty->assign("ticket", $ticket);
+            $smarty->assign("assinatura", $assinatura);
             $smarty->assign("nomeMilitar", $nomeMilitar);
             $smarty->assign("obs", $obs);
             $smarty->assign("cpfMilitar", $cpfMilitar);
+            $smarty->assign("nome", $_SESSION["nome"]);
+            $smarty->assign("posto", $_SESSION["posto"]);
 
             $pdf->WriteHTML($smarty->fetch('paginas/gerarDeclaracao.tpl'));
             $pdf->Output();

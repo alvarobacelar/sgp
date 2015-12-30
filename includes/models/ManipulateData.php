@@ -19,8 +19,8 @@ class ManipulateData extends MysqlConn {
     public function setTable($t) {
         $this->table = $t;
     }
-    
-     //ENVIA O NOME DA TABELA A SER USADA NA CLASSE
+
+    //ENVIA O NOME DA TABELA A SER USADA NA CLASSE
     public function setCampoBancoSelect($cb) {
         $this->campoBancoSelect = $cb;
     }
@@ -84,8 +84,8 @@ class ManipulateData extends MysqlConn {
         $this->sql = "SELECT $this->campoBancoSelect FROM $this->table $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
-    public function selectAtivo(){
+
+    public function selectAtivo() {
         $this->sql = "SELECT * FROM $this->table WHERE status = '1' $this->orderTable";
         $this->execSQL($this->sql);
     }
@@ -109,17 +109,16 @@ class ManipulateData extends MysqlConn {
         $this->sql = "SELECT * FROM $this->table ORDER BY $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
+
     public function selectPipeirosDesativados() {
         $this->sql = "SELECT * FROM $this->table WHERE id_cidade_atuante = '10' ORDER BY $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
-    public function selectLogAcesso(){
+
+    public function selectLogAcesso() {
         $this->sql = "SELECT * FROM $this->table WHERE acesso_usuario.usuario_id_usuario = usuario.id_usuario ORDER BY $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
 
     /**
      * Metodo para selecionar todos os Pipeiros
@@ -135,22 +134,22 @@ class ManipulateData extends MysqlConn {
                                                 AND pipeiro.id_pipeiro = '$this->valueId'";
         $this->execSQL($this->sql);
     }
-    
+
     public function selectPipeiroContrato() {
         $this->sql = "SELECT * FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
                                                 AND $this->fieldId = '$this->valueId'";
         $this->execSQL($this->sql);
     }
-    
+
     public function selectPipeiroTodos() {
         $this->sql = "SELECT * FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
                                                 ORDER BY $this->orderTable";
-        
+
         $this->execSQL($this->sql);
     }
-    
+
     public function selectPipeiroAtivo() {
         $this->sql = "SELECT * FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
@@ -158,7 +157,7 @@ class ManipulateData extends MysqlConn {
                                                 ORDER BY $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
+
     public function selectPipeiroDesativado() {
         $this->sql = "SELECT * FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
@@ -166,17 +165,17 @@ class ManipulateData extends MysqlConn {
                                                 ORDER BY $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
-    public function selectRPSTodas($dataInicio, $dataFim){
+
+    public function selectRPSTodas($dataInicio, $dataFim) {
         $this->sql = "SELECT * FROM $this->table WHERE $this->orderTable rps.data_pesquisa BETWEEN ('$dataInicio') AND ('$dataFim') ORDER BY cidade_atuante.nome_cidade_atuante";
         $this->execSQL($this->sql);
     }
-    
-    public function selectSomaRPS($dataInicio, $dataFim){
+
+    public function selectSomaRPS($dataInicio, $dataFim) {
         $this->sql = "SELECT rps.valor_liquido_rps FROM $this->table WHERE $this->orderTable rps.data_pesquisa BETWEEN ('$dataInicio') AND ('$dataFim')";
         $this->execSQL($this->sql);
     }
-    
+
     public function CountPipeiroAtivo() {
         $this->sql = "SELECT count(*) as total FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
@@ -187,7 +186,7 @@ class ManipulateData extends MysqlConn {
         $cont = $total->total;
         return $cont;
     }
-    
+
     public function CountRpsExcluida() {
         $this->sql = "SELECT count(*) as total FROM $this->table WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro
                              AND status_remove='1'";
@@ -196,7 +195,7 @@ class ManipulateData extends MysqlConn {
         $cont = $total->total;
         return $cont;
     }
-    
+
     public function CountPipeiroDesativado() {
         $this->sql = "SELECT count(*) as total FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
@@ -207,7 +206,7 @@ class ManipulateData extends MysqlConn {
         $cont = $total->total;
         return $cont;
     }
-    
+
     public function CountPipeiroTodos() {
         $this->sql = "SELECT count(*) as total FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante 
                                                 AND pipeiro.id_veiculo = veiculo.id_veiculo
@@ -264,39 +263,39 @@ class ManipulateData extends MysqlConn {
         $this->sql = "SELECT * FROM $this->table WHERE $this->fieldId like '%$this->valueId%'";
         $this->execSQL($this->sql);
     }
-    
-    public function pesquisarPipeiro($a){
+
+    public function pesquisarPipeiro($a) {
         $this->sql = "SELECT * FROM $this->table WHERE pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante "
                 . "AND pipeiro.id_cidade_atuante $a "
                 . "AND nome_pipeiro like '%$this->valueId%'";
         $this->execSQL($this->sql);
     }
-    
+
     /**
      * Metodo para pesquisar rps feita por nome
      * @access public
      * @param String $name nome do pipeiro
      * @return String Retorna a pesquisa feita em um determinado nome
      */
-    public function pesquisaRPS(){
+    public function pesquisaRPS() {
         $this->sql = "SELECT * FROM rps,pipeiro WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro
                             AND $this->fieldId like '%$this->valueId%' $this->orderTable AND status_remove='0' ORDER BY id_rps DESC";
         $this->execSQL($this->sql);
     }
-    
-    public function pesquisaRPSexcluido(){
+
+    public function pesquisaRPSexcluido() {
         $this->sql = "SELECT * FROM rps,pipeiro WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro
                              AND status_remove='1' $this->orderTable";
         $this->execSQL($this->sql);
     }
-    
-    public function pesquisaRPS2via(){
+
+    public function pesquisaRPS2via() {
         $this->sql = "SELECT * FROM rps,pipeiro,cidade_atuante WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro
                             AND pipeiro.id_cidade_atuante = cidade_atuante.id_cidade_atuante
                             AND $this->fieldId = '$this->valueId' AND status_remove='0'";
         $this->execSQL($this->sql);
     }
-    
+
     public function login($user, $senha) {
         $this->sql = "SELECT * FROM $this->table WHERE login_usuario = '$user' AND senha_usuario = '$senha'";
         $this->execSQL($this->sql);
@@ -323,8 +322,6 @@ class ManipulateData extends MysqlConn {
         $this->qr = self::execSql($this->sql);
         return self::countData($this->qr);
     }
-    
-    
 
     function formataData($data) {
         list($ano, $mes, $dia) = explode("-", $data);
@@ -407,6 +404,50 @@ class ManipulateData extends MysqlConn {
         );
 
         return "{$dia}" . " de " . $mes_extenso["$mes"] . " de {$ano}";
+    }
+
+    function mostrarMes() {
+        $mes = date('M');
+        $ano = date('Y');
+
+        $mes_extenso = array(
+            'Jan' => 'Janeiro',
+            'Feb' => 'Fevereiro',
+            'Mar' => 'Março',
+            'Apr' => 'Abril',
+            'May' => 'Maio',
+            'Jun' => 'Junho',
+            'Jul' => 'Julho',
+            'Aug' => 'Agosto',
+            'Nov' => 'Novembro',
+            'Sep' => 'Setembro',
+            'Oct' => 'Outubro',
+            'Dec' => 'Dezembro'
+        );
+
+        return $mes_extenso["$mes"];
+    }
+
+    function mostrarMesAnt() {
+        $mes = date('m');
+        $ano = date('Y');
+
+        $mes_extenso = array(
+            '01' => 'DEZEMBRO',
+            '02' => 'JANEIRO',
+            '03' => 'FEVEREIRO',
+            '04' => 'MARÇO',
+            '05' => 'ABRIL',
+            '06' => 'MAIO',
+            '07' => 'JUNHO',
+            '08' => 'JULHO',
+            '09' => 'AGOSTO',
+            '10' => 'SETEMBRO',
+            '11' => 'OUTUBRO',
+            '12' => 'NOVEMBRO'
+        );
+
+        return $mes_extenso["$mes"];
     }
 
 }

@@ -7,7 +7,11 @@ require_once './includes/models/ManipulateData.php';
 
 if ($estaLogado == "SIM" && !isset($active)) {
 
-    if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente" || $funcao == "Credenciamento" || $funcao == "Administrador do Sistema" || $funcao == "Chefe da prestação de contas") {
+    /*
+     * Somente o Credenciamento e o Administrador (que tem dominio total do sistema)
+     * poderá adicionar novo pipeiro ao banco de dados no sistema.
+     */
+    if ($_SESSION["nivel"] == "admin" || $funcao == "Credenciamento" || $funcao == "Administrador do Sistema") {
     
         
         if (isset($_SESSION["erroPipeiro"])){

@@ -17,6 +17,7 @@ $posto = addslashes($_POST["selectPosto"]);
 $senha = addslashes($_POST["inputSenha"]);
 $senha2 = addslashes($_POST["inputSenha2"]);
 $funcao = addslashes($_POST["inputFuncao"]);
+$nomeGuerra = addslashes($_POST["inputNomeGerra"]);
 $cpf = addslashes($_POST["inputCpf"]);
 $data = date("Y-m-d") . " " . date("H:i:s");
 
@@ -36,8 +37,8 @@ if ($_SESSION["nivel"] == "admin") {
             $_SESSION["erro"] = "duplicado";
             header("Location: ../../cadastrarUsuario.php");
         } else {
-            $cad->setCamposBanco("nome_usuario,login_usuario,senha_usuario,posto_grad_usuario,funcao_usuario,nivel, data_cadastro, cpf_usuario"); //CAMPOS DO BANCO DE DADOS
-            $cad->setDados("'$nome', '$login', '$senha', '$posto', '$funcao', '$nivel', '$data', '$cpf'"); //DADOS DO FORMULARIOS
+            $cad->setCamposBanco("nome_usuario,login_usuario,senha_usuario,posto_grad_usuario,funcao_usuario,nivel, data_cadastro, cpf_usuario, nome_guerra"); //CAMPOS DO BANCO DE DADOS
+            $cad->setDados("'$nome', '$login', '$senha', '$posto', '$funcao', '$nivel', '$data', '$cpf', '$nomeGuerra'"); //DADOS DO FORMULARIOS
             $cad->insert(); //EFETUANDO CADASTRO
             $_SESSION["erro"] = $cad->getStatus();
             header("location: ../../cadastrarUsuario.php");

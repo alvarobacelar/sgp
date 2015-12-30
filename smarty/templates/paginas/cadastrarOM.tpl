@@ -3,7 +3,7 @@
     <div class="panel-heading">
 
         {if !empty($om)}
-            <h2 class="panel-title">Mudar Parâmetros de DESPACHO</h2>
+            <h2 class="panel-title">Mudar Parâmetros</h2>
         {else}
             <h2 class="panel-title">Cadastrar OM</h2>
         {/if}
@@ -23,7 +23,7 @@
                         <input class="form-control" type="text" id="inputPostoGradCmt" name="inputPostoGradCmt" required="" value="{if !empty($om)}{$om->post_grad_cmt_om}{/if}" placeholder="Ex: Ten Cel">
                     </div>
                 </div>
-                
+
                 <div class="form-group form-group-sm">
                     <label class="col-sm-3 control-label" for="inputComandanteCmt">Comandante</label>
                     <div class="col-sm-6">
@@ -55,19 +55,16 @@
                 <div class="form-group form-group-sm">
                     <label class="col-sm-3 control-label" for="inputSiglaPipa">Sigla Op Pipa</label>
                     <div class="col-sm-2">
-                        <input class="form-control" type="text" id="inputSiglaPipa" value="{if !empty($om)}{$om->sigla_pipa_desp}{/if}" name="inputSiglaPipa" required="" value="{if !empty($om)}{$om->sigla_pipa_desp}{/if}" placeholder="EX: OP PIPA 2015">
+                        <input class="form-control" type="text" id="inputSiglaPipa" value="{if !empty($om)}{$om->sigla_pipa_desp}{/if}" name="inputSiglaPipa" required="" placeholder="EX: OP PIPA 2015">
                     </div>
                 </div>
 
-                <!--
                 <div class="form-group form-group-sm">
-                    <label class="col-sm-3 control-label" for="inputSenha">Imagem do Carimbo da RPS</label>
-                    <div class="col-sm-4">
-                        <input class="form-control" type="file" id="fileCarimboRPS" value="" name="fileCarimboRPS" title="Faça o upload da imagem digitalizada do carimbo que saiŕa junto com a RPS"><br />
-                {if !empty($om)}<img src="{$om->carimbo_rps_om}" width="400" alt="carimbo rps">{/if}
-            </div>
-        </div>
-                -->
+                    <label class="col-sm-3 control-label" for="inputAno">Ano prestação conta</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputAno" value="{if !empty($om)}{$om->ano_prestacao}{/if}" name="inputAno" required="" placeholder="Ano prestação de conta">
+                    </div>
+                </div>   
 
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-10">
@@ -179,6 +176,13 @@
                     <label class="col-sm-3 control-label" for="inputSiglaPipa">Sigla Op Pipa</label>
                     <div class="col-sm-2">
                         <input class="form-control" type="text" id="inputSiglaPipa" value="" name="inputSiglaPipa" required="" value="" placeholder="EX: OP PIPA 2015">
+                    </div>
+                </div>
+
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-3 control-label" for="inputAno">Ano prestação conta</label>
+                    <div class="col-sm-2">
+                        <input class="form-control" type="text" id="inputAno" value="" name="inputAno" required="" placeholder="Ano prestação de conta">
                     </div>
                 </div>
 

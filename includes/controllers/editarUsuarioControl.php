@@ -11,6 +11,7 @@ $senha2 = addslashes($_POST["inputSenha2"]);
 $posto = addslashes($_POST["selectPosto"]);
 $nivel = addslashes($_POST["selectNivel"]);
 $funcao = addslashes($_POST["inputFuncao"]);
+$nomeGuerra = addslashes($_POST["inputNomeGerra"]);
 $cpf = addslashes($_POST["inputCpf"]);
 session_start();
 
@@ -25,7 +26,7 @@ if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
             $senha = md5($senha);
 
             //SETANDO OS CAMPOS PARA O BANCO DE DADOS
-            $alt->setCamposBanco("nome_usuario='$nome', login_usuario='$login', senha_usuario='$senha', posto_grad_usuario = '$posto', funcao_usuario = '$funcao', nivel = '$nivel', cpf_usuario = '$cpf'");
+            $alt->setCamposBanco("nome_usuario='$nome', login_usuario='$login', senha_usuario='$senha', posto_grad_usuario = '$posto', funcao_usuario = '$funcao', nivel = '$nivel', cpf_usuario = '$cpf', nome_guerra='$nomeGuerra'");
             $alt->setFieldId("id_usuario"); //ENVIANDO O CAMPO REFERENTE AO CODIGO PADRAO DE PESQUISA
             $alt->setValueId("$id"); //ENVIANDO O VALOR DO CAMPO DE PESQUISA
             $alt->update(); //EFETUANDO A ALTERAÇÃO
@@ -36,7 +37,7 @@ if ($_SESSION["nivel"] == "admin" || $_SESSION["nivel"] == "gerente") {
     } else {
         //INSTACIANDO O OBJETO DE ALTERACAO
         //SETANDO OS CAMPOS PARA O BANCO DE DADOS
-        $alt->setCamposBanco("nome_usuario='$nome', login_usuario='$login', posto_grad_usuario = '$posto', funcao_usuario = '$funcao', nivel = '$nivel', cpf_usuario = '$cpf'");
+        $alt->setCamposBanco("nome_usuario='$nome', login_usuario='$login', posto_grad_usuario = '$posto', funcao_usuario = '$funcao', nivel = '$nivel', cpf_usuario = '$cpf', nome_guerra='$nomeGuerra'");
         $alt->setFieldId("id_usuario"); //ENVIANDO O CAMPO REFERENTE AO CODIGO PADRAO DE PESQUISA
         $alt->setValueId("$id"); //ENVIANDO O VALOR DO CAMPO DE PESQUISA
         $alt->update(); //EFETUANDO A ALTERAÇÃO

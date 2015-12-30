@@ -66,7 +66,7 @@
                             <tr>
                                 <td width="97" style="font-size: 11px">Referente </td>
                                 <td colspan="5" style="font-size: 13px">AO TRANSPORTE E DISTRIBUIÇÃO DE ÁGUA POTÁVEL DA OP PIPA NO MUNICÍPIO DE &nbsp;<strong>{$rps->nome_cidade_atuante|upper}</strong></td>
-                                <td colspan="2" nowrap style="font-size: 12px"><strong>, NO MÊS DE {$mes} DE {$anoPrestacao}</strong></td>
+                                <td colspan="2" nowrap style="font-size: 12px"><strong>, NO MÊS DE {$mes} DE {$om->ano_prestacao}</strong></td>
                             </tr>
                             <tr>
                                 <td style="font-size: 11px">A importancia de </td>
