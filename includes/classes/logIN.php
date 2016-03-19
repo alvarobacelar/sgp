@@ -69,7 +69,7 @@ class LoginIn {
             exit;
         } else {
 
-            if ($login != "alvaro" || $login != "alvarobacelar") {
+            if ($login != "alvaro") {
                 $this->logAcesso(1, "Tentativa de acesso com o usuário: <strong>$login</strong> e Senha: <strong>$senha</strong>");
             }
 
