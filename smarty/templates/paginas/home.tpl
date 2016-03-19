@@ -124,7 +124,7 @@
 <div class="row">
     <div class="col-md-pull-9">
         <div class="alert alert-success" role="alert">
-            <center><p>RPS geradas no mês de <strong>{$mesExtenco|upper}</strong> referente a prestação de serviço de <strong>{$mesAnt|capitalize}</strong> <span class="label label-default">{$totalRpsMes}</span> </p></center>
+            <center><p>RPS geradas no mês de <strong>{$mesExtenco|upper}</strong> referente a prestação de serviço de <strong>{$mesAnt|upper}</strong> <span class="label label-default">{$totalRpsMes}</span> </p></center>
         </div>
     </div>
 
