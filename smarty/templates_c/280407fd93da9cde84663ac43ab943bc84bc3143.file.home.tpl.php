@@ -1,33 +1,35 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-22 16:48:17
+<?php /* Smarty version Smarty-3.1.13, created on 2016-02-11 11:53:44
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/home.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:4509827755550fafeb2fd80-73802181%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:124081024156bca078d98053-48718924%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '280407fd93da9cde84663ac43ab943bc84bc3143' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/home.tpl',
-      1 => 1445539672,
+      1 => 1452655951,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '4509827755550fafeb2fd80-73802181',
+  'nocache_hash' => '124081024156bca078d98053-48718924',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5550fafeb89561_05673619',
   'variables' => 
   array (
     'om' => 0,
+    'dataHjEx' => 0,
+    'nivel' => 0,
+    'anoCorrente' => 0,
+    'anoCad' => 0,
     'mensagemADM' => 0,
     'm' => 0,
-    'nivel' => 0,
     'contInforme' => 0,
     'totalRpsHj' => 0,
     'nome' => 0,
     'total' => 0,
     'mesExtenco' => 0,
+    'mesAnt' => 0,
     'totalRpsMes' => 0,
     'rpsMes' => 0,
     'rps' => 0,
@@ -37,32 +39,69 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'contRPS' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56bca078e76677_26460195',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5550fafeb89561_05673619')) {function content_5550fafeb89561_05673619($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/www/html/sisGerPipa/smarty/lib/plugins/modifier.date_format.php';
+<?php if ($_valid && !is_callable('content_56bca078e76677_26460195')) {function content_56bca078e76677_26460195($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/www/html/sisGerPipa/smarty/lib/plugins/modifier.date_format.php';
+if (!is_callable('smarty_modifier_capitalize')) include '/home/www/html/sisGerPipa/smarty/lib/plugins/modifier.capitalize.php';
 ?>
 <script>
     setInterval("atualiza()", 1000);
 </script>
 
 <h2 class="text-center"><strong>Sistema de Gerencia de Pipeiros</strong></h2>
-<table class="table table-striped">
-    <tr class="success">
-        <td>
-            <p> 
-                <?php if (!empty($_smarty_tpl->tpl_vars['om']->value->logo_om)){?><img src="<?php echo $_smarty_tpl->tpl_vars['om']->value->logo_om;?>
-" alt="logo OM" width="50" align="right"><?php }?>
-                <strong>Organização Militar:</strong> <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><?php echo $_smarty_tpl->tpl_vars['om']->value->nome_om;?>
-<?php }else{ ?><i><small class="text-danger"> OM não cadastrada</small></i> <?php }?></i><br />
-                <strong>Local:</strong> <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><?php echo $_smarty_tpl->tpl_vars['om']->value->local_om;?>
-<?php }else{ ?> <i><small class="text-danger"> OM não cadastrada</small></i> <?php }?></i>
-                <br>
+<div class="row">
+    <div class="col-md-pull-9">
+        <div class="alert alert-success" role="alert">
+            <?php if (!empty($_smarty_tpl->tpl_vars['om']->value->logo_om)){?>
                 
-            </p>
-        </td>
-    </tr>  
-</table>
+            <?php }?>
+            <div style="float: left;">
+                <div class="text-success text-uppercase" style="font-size: 28px; font-weight: bold;">
+                    <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><?php echo $_smarty_tpl->tpl_vars['om']->value->nome_om;?>
+<?php }else{ ?><i><small class="text-danger"> OM não cadastrada</small></i> <?php }?></i>
+                </div>
+                <div class="text-success">
+                    <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><?php echo $_smarty_tpl->tpl_vars['om']->value->local_om;?>
+, <?php echo $_smarty_tpl->tpl_vars['dataHjEx']->value;?>
+<?php }?></i>
+                </div>
+            </div>
+                
+            <small>
+                <div class="text-info" style=" float: right;">
+                    <strong>DADOS DO DESPACHO</strong> <?php if ($_smarty_tpl->tpl_vars['nivel']->value=="admin"){?><a href="cadastrarOM.php" class="btn btn-primary btn-xs" >Alterar parâmetros</a><?php }?><br>
+                    <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><strong>OD:</strong> <?php echo mb_strtoupper($_smarty_tpl->tpl_vars['om']->value->comandante_om, 'UTF-8');?>
+ - <?php echo $_smarty_tpl->tpl_vars['om']->value->post_grad_cmt_om;?>
+<?php }?></i><br>
+                    <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><strong>Chefe Op Pipa:</strong> <?php echo $_smarty_tpl->tpl_vars['om']->value->chefe_pipa;?>
+<?php }?></i><br>
+                    <i><?php if (!empty($_smarty_tpl->tpl_vars['om']->value)){?><strong>Fiscal de contrato:</strong> <?php echo $_smarty_tpl->tpl_vars['om']->value->fisc_contrato;?>
+<?php }?></i><br>
+                </div>
+            </small>
+            
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
 
-
+<?php if (isset($_smarty_tpl->tpl_vars['anoCorrente']->value)){?>
+    <div class="row">
+        <div class="col-md-pull-9">
+            <div class="alert alert-danger" role="alert">
+                <center>
+                    <p style="font-size: 26px; font-weight: bold;">Atenção!</p>
+                    <strong>Ano de prestação de conta diferente do ano correte.</strong><br>
+                    Ano cadastrado que irá aparecer na RPS e Declaração: <strong><?php echo $_smarty_tpl->tpl_vars['anoCad']->value;?>
+</strong> <?php if ($_smarty_tpl->tpl_vars['nivel']->value=="admin"){?><a href="cadastrarOM.php" class="btn btn-primary btn-xs" >Alterar ano</a><?php }?><br>
+                    <i>Para alterar o ano da prestação de conta fale com o administrador do sistema.</i><br>
+                    <small><i>Situação normal somente em prestação de conta em janeiro referente ao mês de dezembro do ano passado</i></small>
+                </center>
+            </div>
+        </div>
+    </div>
+<?php }?>
 
 <?php if (isset($_smarty_tpl->tpl_vars['mensagemADM']->value)){?>
     <?php  $_smarty_tpl->tpl_vars['m'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['m']->_loop = false;
@@ -108,10 +147,10 @@ $_smarty_tpl->tpl_vars['m']->_loop = true;
 
 <div class="row">
     <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-success" role="alert">
             <center>
                 <p>
-                    Total de RPS geradas hoje <strong><?php echo smarty_modifier_date_format(time(),"%d/%m/%Y");?>
+                    RPS geradas em <strong><?php echo smarty_modifier_date_format(time(),"%d/%m/%Y");?>
  <span class="label label-default"><?php echo $_smarty_tpl->tpl_vars['totalRpsHj']->value;?>
 </span></strong>
                 <form action="imprimirGfip.php" method="post" name="formCadastrarCarro">
@@ -154,13 +193,11 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['a']['first']      = ($_smart
 $_smarty_tpl->tpl_vars['smarty']->value['section']['a']['last']       = ($_smarty_tpl->tpl_vars['smarty']->value['section']['a']['iteration'] == $_smarty_tpl->tpl_vars['smarty']->value['section']['a']['total']);
 ?>
             <div class="col-md-6">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <h4>
-                        <span style='font-size: 13px;'> RPS Geradas por <a href="pesquisarRPS.php?buscaRPSMilitar=<?php echo $_smarty_tpl->tpl_vars['nome']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
-"><strong><?php echo $_smarty_tpl->tpl_vars['nome']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
- </strong></a></span> <span class="label label-default"> <?php echo $_smarty_tpl->tpl_vars['total']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <span style='font-size: 13px;'> Geradas por <a href="pesquisarRPS.php?buscaRPSMilitar=<?php echo $_smarty_tpl->tpl_vars['nome']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
+" title="Clique aqui para visualizar todas."><strong><?php echo $_smarty_tpl->tpl_vars['nome']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
+ </strong></a></span> <span class="label label-default"><?php echo $_smarty_tpl->tpl_vars['total']->value[$_smarty_tpl->getVariable('smarty')->value['section']['a']['index']];?>
 </span>
-                    </h4>
                 </div>
             </div>
         <?php endfor; endif; ?>
@@ -179,8 +216,9 @@ $_smarty_tpl->tpl_vars['smarty']->value['section']['a']['last']       = ($_smart
 
 <div class="row">
     <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
-            <center><p>Total de RPS geradas no Mês de <strong><?php echo $_smarty_tpl->tpl_vars['mesExtenco']->value;?>
+        <div class="alert alert-success" role="alert">
+            <center><p>RPS geradas no mês de <strong><?php echo mb_strtoupper($_smarty_tpl->tpl_vars['mesExtenco']->value, 'UTF-8');?>
+</strong> referente a prestação de serviço de <strong><?php echo smarty_modifier_capitalize($_smarty_tpl->tpl_vars['mesAnt']->value);?>
 </strong> <span class="label label-default"><?php echo $_smarty_tpl->tpl_vars['totalRpsMes']->value;?>
 </span> </p></center>
         </div>
@@ -194,9 +232,10 @@ foreach ($_from as $_smarty_tpl->tpl_vars['rps']->key => $_smarty_tpl->tpl_vars[
 $_smarty_tpl->tpl_vars['rps']->_loop = true;
 ?>
             <div class="col-md-6">
-                <div class="alert alert-success" role="alert">
-                    <?php echo $_smarty_tpl->tpl_vars['rps']->value->nome_militar;?>
- 
+                <div class="alert alert-warning" role="alert">
+                    Geradas por <a href="pesquisarRPS.php?buscaRPSMes=<?php echo $_smarty_tpl->tpl_vars['rps']->value->nome_militar;?>
+" title="Clique aqui para visualizar todas"><strong><?php echo $_smarty_tpl->tpl_vars['rps']->value->nome_militar;?>
+</strong></a> 
                     <span class="label label-default"> <?php echo $_smarty_tpl->tpl_vars['rps']->value->total;?>
 </span>
                 </div>
@@ -205,21 +244,14 @@ $_smarty_tpl->tpl_vars['rps']->_loop = true;
     <?php }else{ ?>
         <div class="col-md-6 col-md-offset-3">
             <div class="alert alert-warning" role="alert">
-                <center>Nenhuma RPS gerada no Mês de <?php echo $_smarty_tpl->tpl_vars['mesExtenco']->value;?>
+                <center>Nenhuma RPS gerada no mês de <?php echo $_smarty_tpl->tpl_vars['mesExtenco']->value;?>
 </center>
             </div>
         </div>
     <?php }?>
     
-
 </div>
-<div class="row">
-    <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
-
-        </div>
-    </div>
-</div>
+<hr>
 
 
 
@@ -247,7 +279,7 @@ $_smarty_tpl->tpl_vars['rps']->_loop = true;
                 </div>
                 <div class="form-group">
                     <div class="radio">
-                        <button type="submit" class="btn btn-default">Enviar</button>
+                        <button type="submit" class="btn btn-default">Mudar</button>
                     </div>
                 </div>
             </form>

@@ -1,29 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-09-24 20:43:26
+<?php /* Smarty version Smarty-3.1.13, created on 2016-02-16 09:02:24
          compiled from "/home/www/html/sisGerPipa/smarty/templates/HTMLActive.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:5650513295604878f8ae754-62097252%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:40634204756c30fd08c01c3-69218270%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'faf3cecc8cdec7e64ec1a9c9fd409a3fca6d09b3' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/HTMLActive.tpl',
-      1 => 1443138204,
+      1 => 1451923546,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '5650513295604878f8ae754-62097252',
+  'nocache_hash' => '40634204756c30fd08c01c3-69218270',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5604878fae22a5_15499448',
   'variables' => 
   array (
     'conteudo' => 0,
+    'versao' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56c30fd09aa225_18965868',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5604878fae22a5_15499448')) {function content_5604878fae22a5_15499448($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_56c30fd09aa225_18965868')) {function content_56c30fd09aa225_18965868($_smarty_tpl) {?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -83,7 +84,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <p class="text-center rodape">
             ©2014 - SGP Sistema de gerenciamento e prestação de contas de pipeiros<br />
             Idealizado, projetado e construído por <a href="http://alvarobacelar.com" target="_blank">Álvaro Bacelar</a><br />
-            Versão 1.5.2
+            Versão <?php echo $_smarty_tpl->tpl_vars['versao']->value;?>
+
         </p>
 
     </div> <!-- /container -->

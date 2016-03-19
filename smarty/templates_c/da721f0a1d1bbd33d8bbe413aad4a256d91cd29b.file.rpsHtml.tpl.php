@@ -1,22 +1,20 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-21 23:52:54
+<?php /* Smarty version Smarty-3.1.13, created on 2016-03-01 10:59:57
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/rpsHtml.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:17290281295550fe7accbfc7-88273075%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:110944712756d5a05deea829-45695755%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'da721f0a1d1bbd33d8bbe413aad4a256d91cd29b' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/rpsHtml.tpl',
-      1 => 1445478771,
+      1 => 1451432949,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '17290281295550fe7accbfc7-88273075',
+  'nocache_hash' => '110944712756d5a05deea829-45695755',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5550fe7aec28d5_32932674',
   'variables' => 
   array (
     'rps' => 0,
@@ -41,8 +39,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'nivel' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56d5a05e2a2930_69097648',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5550fe7aec28d5_32932674')) {function content_5550fe7aec28d5_32932674($_smarty_tpl) {?><div class="panel panel-default">
+<?php if ($_valid && !is_callable('content_56d5a05e2a2930_69097648')) {function content_56d5a05e2a2930_69097648($_smarty_tpl) {?><div class="panel panel-default">
 
     <div class="panel-heading">
 
@@ -124,7 +124,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                                 <td colspan="5" style="font-size: 13px">AO TRANSPORTE E DISTRIBUIÇÃO DE ÁGUA POTÁVEL DA OP PIPA NO MUNICÍPIO DE &nbsp;<strong><?php echo mb_strtoupper($_smarty_tpl->tpl_vars['rps']->value->nome_cidade_atuante, 'UTF-8');?>
 </strong></td>
                                 <td colspan="2" nowrap style="font-size: 12px"><strong>, NO MÊS DE <?php echo $_smarty_tpl->tpl_vars['mes']->value;?>
- DE <?php echo $_smarty_tpl->tpl_vars['anoPrestacao']->value;?>
+ DE <?php echo $_smarty_tpl->tpl_vars['om']->value->ano_prestacao;?>
 </strong></td>
                             </tr>
                             <tr>

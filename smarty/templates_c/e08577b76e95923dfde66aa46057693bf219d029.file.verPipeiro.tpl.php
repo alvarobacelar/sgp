@@ -1,30 +1,31 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-16 17:35:00
+<?php /* Smarty version Smarty-3.1.13, created on 2016-03-01 10:59:39
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/verPipeiro.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:75677589655e49934c2a560-12797044%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:210391736756d5a04bbb16b2-75577088%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'e08577b76e95923dfde66aa46057693bf219d029' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/verPipeiro.tpl',
-      1 => 1445027697,
+      1 => 1451918341,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '75677589655e49934c2a560-12797044',
+  'nocache_hash' => '210391736756d5a04bbb16b2-75577088',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_55e49934d403e2_37609781',
   'variables' => 
   array (
     'pipeiro' => 0,
     'nivel' => 0,
+    'totalRPS' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56d5a04be53079_61094428',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55e49934d403e2_37609781')) {function content_55e49934d403e2_37609781($_smarty_tpl) {?><div class="panel panel-default">
+<?php if ($_valid && !is_callable('content_56d5a04be53079_61094428')) {function content_56d5a04be53079_61094428($_smarty_tpl) {?><div class="panel panel-default">
 
     <div class="panel-heading">
 
@@ -60,7 +61,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 -<?php echo $_smarty_tpl->tpl_vars['pipeiro']->value->uf_cidade;?>
  </td>
                     </tr>
-
+                    
+                    <tr class="warning">
+                        <td class="text-muted"><strong>Total de todas RPS geradas</strong></td>
+                        <td> <?php echo $_smarty_tpl->tpl_vars['totalRPS']->value;?>
+ </td>
+                    </tr>
 
                     <tr>
                         <td colspan="2"><strong>Dados Pessoais</strong></td>

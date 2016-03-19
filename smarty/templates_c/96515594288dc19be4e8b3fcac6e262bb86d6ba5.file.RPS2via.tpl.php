@@ -1,22 +1,22 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-18 14:32:23
+<?php /* Smarty version Smarty-3.1.13, created on 2016-02-11 11:55:13
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/RPS2via.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:63256955455537572d627d1-30877635%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:204353475256bca07d5ed7a1-58067297%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '96515594288dc19be4e8b3fcac6e262bb86d6ba5' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/RPS2via.tpl',
-      1 => 1445175140,
+      1 => 1455202511,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '63256955455537572d627d1-30877635',
+  'nocache_hash' => '204353475256bca07d5ed7a1-58067297',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_55537572dc9433_06843410',
+  'unifunc' => 'content_56bca07d659e54_08676900',
   'variables' => 
   array (
     'rps' => 0,
@@ -26,13 +26,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_55537572dc9433_06843410')) {function content_55537572dc9433_06843410($_smarty_tpl) {?>﻿<!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_56bca07d659e54_08676900')) {function content_56bca07d659e54_08676900($_smarty_tpl) {?><!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
 
         
             <style>   
+                .pq-lef{text-align: left; font-size: 13px;}
+                .pequeno{font-size: 13px;}
                 .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
                 .clearfix:after{clear:both;}
                 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
@@ -83,6 +85,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <title>RPS - <?php echo mb_strtoupper($_smarty_tpl->tpl_vars['rps']->value->nome_pipeiro, 'UTF-8');?>
 </title>
     </head>
+
     <body>
 
 
@@ -237,22 +240,38 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </table><br />
                 RP____________________________ &nbsp;&nbsp;NE_______________________________&nbsp;&nbsp; NS____________________________
                 <br />
-                <small><?php echo $_smarty_tpl->tpl_vars['rps']->value->nome_militar;?>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: center;"> 
+                    __________________________________________<br/>
+                    <small><?php echo $_smarty_tpl->tpl_vars['rps']->value->nome_militar;?>
 </small>
+                </div>
             </div>
 
 
 
         <?php }else{ ?>
-            <h2 class="text-danger" style="font-size: 11px;"><center>Não há cadastro para este pipeiro</center></h2>
-                <?php }?>
+            <h2 class="text-danger" style="font-size: 11px;">
+                <center>
+                    Não há cadastro para este pipeiro
+                </center>
+            </h2>
+        <?php }?>
 
         <?php if ($_smarty_tpl->tpl_vars['om']->value->carimbo_rps_om!=''&&$_smarty_tpl->tpl_vars['mostraDespacho']->value=="S"){?>
-            <br />
+
+            <?php echo $_smarty_tpl->getSubTemplate ("paginas/despacho.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+            <!--
             <div>
                 <center><img src="<?php echo $_smarty_tpl->tpl_vars['om']->value->carimbo_rps_om;?>
 " alt="carimbo om"></center>
             </div>
+            -->
         <?php }?>
 
     </body>

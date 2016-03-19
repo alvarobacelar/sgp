@@ -1,29 +1,30 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-22 12:17:35
+<?php /* Smarty version Smarty-3.1.13, created on 2016-02-11 11:53:41
          compiled from "/home/www/html/sisGerPipa/smarty/templates/HTMLogin.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:117641142555233f90dda99-61555962%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:167895303256bca075515936-78220909%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '117587627a244d9a893d01ef72e561fcced4c484' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/HTMLogin.tpl',
-      1 => 1445520925,
+      1 => 1451923528,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '117641142555233f90dda99-61555962',
+  'nocache_hash' => '167895303256bca075515936-78220909',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_555233f9120f60_05352039',
   'variables' => 
   array (
     'erro' => 0,
+    'versao' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56bca0755dc953_28453659',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_555233f9120f60_05352039')) {function content_555233f9120f60_05352039($_smarty_tpl) {?>
+<?php if ($_valid && !is_callable('content_56bca0755dc953_28453659')) {function content_56bca0755dc953_28453659($_smarty_tpl) {?>
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -114,7 +115,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <p class="text-center rodape">
             ©2014 - SGP Sistema de gerenciamento e prestação de contas de pipeiros<br />
             Idealizado, projetado e construído por <a href="http://alvarobacelar.com" target="_blank">Álvaro Bacelar</a><br />
-            Versão 1.6.2
+            Versão <?php echo $_smarty_tpl->tpl_vars['versao']->value;?>
+
         </p>
 
     </div> <!-- /container -->

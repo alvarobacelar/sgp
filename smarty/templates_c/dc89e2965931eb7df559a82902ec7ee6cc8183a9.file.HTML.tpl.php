@@ -1,32 +1,33 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-22 17:29:15
+<?php /* Smarty version Smarty-3.1.13, created on 2016-02-11 11:53:44
          compiled from "/home/www/html/sisGerPipa/smarty/templates/HTML.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9877520715550fafea42db1-26341689%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:45593568156bca078c5d024-57839587%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     'dc89e2965931eb7df559a82902ec7ee6cc8183a9' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/HTML.tpl',
-      1 => 1445542153,
+      1 => 1451923558,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9877520715550fafea42db1-26341689',
+  'nocache_hash' => '45593568156bca078c5d024-57839587',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5550fafeb2d6c9_01773401',
   'variables' => 
   array (
     'nivel' => 0,
     'funcao' => 0,
     'nomeUser' => 0,
     'conteudo' => 0,
+    'versao' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56bca078d94ce6_82119950',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5550fafeb2d6c9_01773401')) {function content_5550fafeb2d6c9_01773401($_smarty_tpl) {?> 
+<?php if ($_valid && !is_callable('content_56bca078d94ce6_82119950')) {function content_56bca078d94ce6_82119950($_smarty_tpl) {?> 
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -157,9 +158,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Gerenciamento financeiro<span class="caret"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="empenho.php">Lançar empenho</a></li>
-                                    <li><a href="">Opção 2</a></li>
-                                    <li><a href="">Opção 3</a></li>
+                                    <li><a href="empenho.php"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Lançar empenho</a></li>
+                                    <li><a href="liquidacao.php"><span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span> Liquidar empenho</a></li>
                                 </ul>
                             </li>
                         <?php }?>
@@ -233,7 +233,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
         <p class="text-center rodape">
             ©2014 - SGP Sistema de gerenciamento e prestação de contas de pipeiros<br />
             Idealizado, projetado e construído por <a href="http://alvarobacelar.com" target="_blank">Álvaro Bacelar</a><br />
-            Versão 1.6.2
+            Versão <?php echo $_smarty_tpl->tpl_vars['versao']->value;?>
+
         </p>
 
 

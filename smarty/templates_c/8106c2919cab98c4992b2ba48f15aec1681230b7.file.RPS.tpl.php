@@ -1,29 +1,26 @@
-<?php /* Smarty version Smarty-3.1.13, created on 2015-10-05 17:49:05
+<?php /* Smarty version Smarty-3.1.13, created on 2016-03-01 11:00:41
          compiled from "/home/www/html/sisGerPipa/smarty/templates/paginas/RPS.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:9889222915550fe7c6dcf14-27715499%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:71550886856d5a0891dca16-53328504%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '8106c2919cab98c4992b2ba48f15aec1681230b7' => 
     array (
       0 => '/home/www/html/sisGerPipa/smarty/templates/paginas/RPS.tpl',
-      1 => 1444063677,
+      1 => 1455202547,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '9889222915550fe7c6dcf14-27715499',
+  'nocache_hash' => '71550886856d5a0891dca16-53328504',
   'function' => 
   array (
   ),
-  'version' => 'Smarty-3.1.13',
-  'unifunc' => 'content_5550fe7c7a0a75_87317033',
   'variables' => 
   array (
     'rps' => 0,
     'mesNumero' => 0,
     'om' => 0,
     'mes' => 0,
-    'anoImprimir' => 0,
     'valorLiquido' => 0,
     'valorExtenco' => 0,
     'valor' => 0,
@@ -36,8 +33,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'mostraDespacho' => 0,
   ),
   'has_nocache_code' => false,
+  'version' => 'Smarty-3.1.13',
+  'unifunc' => 'content_56d5a089381ff2_71881198',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5550fe7c7a0a75_87317033')) {function content_5550fe7c7a0a75_87317033($_smarty_tpl) {?>﻿<!DOCTYPE html>
+<?php if ($_valid && !is_callable('content_56d5a089381ff2_71881198')) {function content_56d5a089381ff2_71881198($_smarty_tpl) {?>﻿<!DOCTYPE html>
 <html lang="pt-br">
     <head>
         <meta charset="UTF-8" />
@@ -131,7 +130,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                         <td colspan="5" style="font-size: 13px">AO TRANSPORTE E DISTRIBUIÇÃO DE ÁGUA POTÁVEL DA OP PIPA NO MUNICÍPIO DE &nbsp;<strong><?php echo mb_strtoupper($_smarty_tpl->tpl_vars['rps']->value->nome_cidade_atuante, 'UTF-8');?>
 </strong></td>
                         <td colspan="2" nowrap style="font-size: 12px"><strong>, NO MÊS DE <?php echo $_smarty_tpl->tpl_vars['mes']->value;?>
- DE <?php echo $_smarty_tpl->tpl_vars['anoImprimir']->value;?>
+ DE <?php echo $_smarty_tpl->tpl_vars['om']->value->ano_prestacao;?>
 </strong></td>
                     </tr>
                     <tr>
@@ -247,20 +246,32 @@ $_valid = $_smarty_tpl->decodeProperties(array (
                 </table><br />
                 RP____________________________ &nbsp;&nbsp;NE_______________________________&nbsp;&nbsp; NS____________________________
                 <br />
-                <small><?php echo $_smarty_tpl->tpl_vars['posto']->value;?>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: center;"> 
+                    __________________________________________
+                    <small><?php echo $_smarty_tpl->tpl_vars['posto']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['nome']->value;?>
 </small>
+                </div>
             </div>
         <?php }else{ ?>
             <h3 class="text-danger" style="font-size: 11px;"><center>Não há cadastro para este CPF</center></h3>
                 <?php }?>
 
         <?php if ($_smarty_tpl->tpl_vars['om']->value->carimbo_rps_om!=''&&$_smarty_tpl->tpl_vars['mostraDespacho']->value=="S"){?>
-            <br />
+            
+            <?php echo $_smarty_tpl->getSubTemplate ("paginas/despacho.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, null, null, array(), 0);?>
+
+            <!--
             <div>
                 <center><img src="<?php echo $_smarty_tpl->tpl_vars['om']->value->carimbo_rps_om;?>
 " alt="carimbo om"></center>
             </div>
+            -->
         <?php }?>
     </body>
 </html>
