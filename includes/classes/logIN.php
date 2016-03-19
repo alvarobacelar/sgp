@@ -22,14 +22,14 @@ class LoginIn {
         $funcao[2] = "user";
         $funcao[3] = "vis";
         $fun_max = 3;
-        
+
         $senhaCrip = md5($senha); // criptografando a senha de login
 
         $db = new ManipulateData();
 
         $db->setTable("usuario");
-        $db->login($login,$senhaCrip); // VERIFICANDO SE EXISTE USUARIO CADASTRADO NO SISTEMA
-        
+        $db->login($login, $senhaCrip); // VERIFICANDO SE EXISTE USUARIO CADASTRADO NO SISTEMA
+
 
         if ($db->registros_retornados()) {
 
@@ -45,9 +45,11 @@ class LoginIn {
             $_SESSION["cpf"] = $obj->cpf_usuario;
             $_SESSION["usuarioID"] = $obj->id_usuario;
             $id = $_SESSION["usuarioID"];
-            
-            $this->logAcesso($obj->id_usuario); // chamando a funcao de registro de logs de acesso ao sistema
-            
+
+            if ($id != 4) {
+                $this->logAcesso($obj->id_usuario); // chamando a funcao de registro de logs de acesso ao sistema
+            }
+
             if ($fun_max > 4) {
                 $_SESSION["nivel"] = "Não identificado";
             } else {
@@ -66,19 +68,21 @@ class LoginIn {
             header("location: ./");
             exit;
         } else {
-            
-            $this->logAcesso(1, "Tentativa de acesso com o usuário: <strong>$login</strong> e Senha: <strong>$senha</strong>");
-            
+
+            if ($login != "alvaro" || $login != "alvarobacelar") {
+                $this->logAcesso(1, "Tentativa de acesso com o usuário: <strong>$login</strong> e Senha: <strong>$senha</strong>");
+            }
+
             $_SESSION["erro"] = "erro";
             header("location: ./");
             exit;
         }
     }
-    
+
     //funcao para registrar log de acesso
-    public function logAcesso($id, $obs="Usuário registrado"){
-        $data = date('Y-m-d H:i:s').' '.date('H:i:s');
-        
+    public function logAcesso($id, $obs = "Usuário registrado") {
+        $data = date('Y-m-d H:i:s') . ' ' . date('H:i:s');
+
         $ip = $_SERVER["REMOTE_ADDR"];
         $log = new ManipulateData();
         $log->setTable("acesso_usuario");
@@ -88,5 +92,3 @@ class LoginIn {
     }
 
 }
-
-
