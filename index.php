@@ -18,6 +18,14 @@ if ($estaLogado == "SIM" && !isset($active)) {
     $buscaOM->setTable("om");
     $buscaOM->select();
     $om = $buscaOM->fetch_object();
+    
+    // verificando se o ano cadastrado é diferente do ano corrente. 
+    $anoCorrente = date("Y");
+    $anoCad = $om->ano_prestacao;
+    if ($anoCorrente != $anoCad){
+        $smarty->assign("anoCorrente", $anoCorrente);
+        $smarty->assign("anoCad", $anoCad);
+    } 
 
     if (!empty($om)) {
         // verificando qual o status de amostragem do despacho
@@ -104,7 +112,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
     $usersMes = new ManipulateData();
     $usersMes->setTable("rps");
     $usersMes->setCampoBancoSelect("rps.nome_militar, COUNT(*) AS total");
-    $usersMes->setOrderTable("WHERE rps.mes_rps = '$mesAnt[$dataMes]' AND rps.ano_rps = '2015' AND status_remove='0' GROUP BY nome_militar");
+    $usersMes->setOrderTable("WHERE rps.mes_rps = '$mesAnt[$dataMes]' AND rps.ano_rps = '$anoCad' AND status_remove='0' GROUP BY nome_militar");
     $usersMes->select();
 
     while ($usuarioMes[] = $usersMes->fetch_object()) {
@@ -114,7 +122,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
     // fazendo a contagem das RPS geradas no mês corrente
     $contaTotalRPS = new ManipulateData();
     $contaTotalRPS->setTable("rps");
-    $contaTotalRPS->setOrderTable("WHERE mes_rps = '$mesAnt[$dataMes]' AND status_remove='0'");
+    $contaTotalRPS->setOrderTable("WHERE mes_rps = '$mesAnt[$dataMes]' AND ano_rps = '$anoCad' AND status_remove='0'");
     $totalRPSMes = $contaTotalRPS->countTotal();
 
     // fazendo contagem das rps geradas no dia corrente
@@ -143,7 +151,9 @@ if ($estaLogado == "SIM" && !isset($active)) {
 //        $smarty->assign("reload", "<meta HTTP-EQUIV='refresh' CONTENT='15'>");
 //    }
 
+    $smarty->assign("dataHjEx",$contaHjRps->mostrarData());
     $smarty->assign("mesExtenco", $mes_extenso[$dataMes]);
+    $smarty->assign("mesAnt", $mesAnt[$dataMes]);
     $smarty->assign("totalRpsMes", $totalRPSMes);
     $smarty->assign("totalRpsHj", $totalRpsHj);
     $smarty->assign("om", $om);

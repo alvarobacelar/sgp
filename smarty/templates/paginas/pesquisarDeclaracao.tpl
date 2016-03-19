@@ -59,7 +59,8 @@
                 <th><center>Pipeiro</center></th>
                 <th><center>Valor Liquido</center></th>
                 <th><center>Mês ano do serviço</center></th>
-                <th><center>Qnt Tickets</center></th>
+                <th><center>Qnt Planilhas</center></th>
+                <th><center>Qnt Assinaturas</center></th>
                 <th><center>Alterações</center></th>
                 <th><center>Ações</center></th>
 
@@ -70,10 +71,11 @@
                         <td>{$v->valor_liquido_rps}</td>
                         <td>{$v->mes_rps} / {$v->ano_rps}</td> 
                         <td>{if !empty($v->tickets_declaracao)}{$v->tickets_declaracao}{else}<small><i>Sem informações</i></small>{/if}</td>
-                        <td>{if !empty($v->alteracoes_declaracao)}{$v->alteracoes_declaracao}{else}<small><i>Sem alterações</i></small>{/if}</td>
+                        <td>{if !empty($v->assinatura_declaracao)}{$v->assinatura_declaracao}{else}<small><i>Sem informações</i></small>{/if}</td>
+                        <td width="200">{if !empty($v->alteracoes_declaracao)}{$v->alteracoes_declaracao}{else}<small><i>Sem alterações</i></small>{/if}</td>
                         <td >
                             <a href="RPS2via.php?rps2via={$v->id_rps}" target="_blank" class="btn btn-info btn-xs"> Ver RPS</a><br>
-                            
+
                             {if $nivel != "user"}
                                 {if $nivel != "vis" && $funcao != "GCDA"}
                                     <a onclick="excluirRPS({$v->id_rps})" class="btn btn-danger btn-xs"> <span class="glyphicon glyphicon-remove-circle"></span> Excluir</a>

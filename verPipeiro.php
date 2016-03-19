@@ -15,11 +15,19 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $verPipeiro->setDados("$idPipeiro");
         $verPipeiro->selectCidadeAtuacao();
 
-        if ($verPipeiro->registros_retornados() >= 1) {
+        if ($verPipeiro->registros_retornados() >= 1) { 
 
             $dbVerPipeiro = $verPipeiro->fetch_object();
             $data = $verPipeiro->formataData($dbVerPipeiro->data_edicao_pipeiro);
             $smarty->assign("pipeiro", $dbVerPipeiro);
+            
+            $cpfPipeiro = $dbVerPipeiro->cpf_pipeiro;
+            
+            $contaRps = new ManipulateData();
+            $contaRps->setTable("rps,pipeiro");
+            $contaRps->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND pipeiro.cpf_pipeiro = '$cpfPipeiro' AND status_remove='0'");
+            
+            $smarty->assign("totalRPS", $contaRps->countTotal());
 
             $smarty->assign("nivel", $nivel);
             $smarty->assign("data", $data);

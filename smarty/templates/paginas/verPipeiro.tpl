@@ -26,7 +26,11 @@
                         <td class="text-muted"><strong>Cidade Estado</strong></td>
                         <td> {$pipeiro->nome_cidade_atuante}-{$pipeiro->uf_cidade} </td>
                     </tr>
-
+                    
+                    <tr class="warning">
+                        <td class="text-muted"><strong>Total de todas RPS geradas</strong></td>
+                        <td> {$totalRPS} </td>
+                    </tr>
 
                     <tr>
                         <td colspan="2"><strong>Dados Pessoais</strong></td>

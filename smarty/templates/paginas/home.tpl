@@ -4,21 +4,50 @@
 </script>
 
 <h2 class="text-center"><strong>Sistema de Gerencia de Pipeiros</strong></h2>
-<table class="table table-striped">
-    <tr class="success">
-        <td>
-            <p> 
-                {if !empty($om->logo_om)}<img src="{$om->logo_om}" alt="logo OM" width="50" align="right">{/if}
-                <strong>Organização Militar:</strong> <i>{if !empty($om)}{$om->nome_om}{else}<i><small class="text-danger"> OM não cadastrada</small></i> {/if}</i><br />
-                <strong>Local:</strong> <i>{if !empty($om)}{$om->local_om}{else} <i><small class="text-danger"> OM não cadastrada</small></i> {/if}</i>
-                <br>
-                {*<h4><small>{if $nivel =="admin" || $nivel == "gerente"}P.S. Foi adicionada funções de exclusão automatica de informação. A mensagem será excluida automaticamente ao corrigir a alteração informada. {else}P.S. Agora ao gerar declaração, os dados, devidamente cadastrados do usuário, será automaticamente preenchido pelo sistema. Caso não vigore, saia e entre no  sistema novamente.{/if} Att. Sgt Álvaro</small></h4>*}
-            </p>
-        </td>
-    </tr>  
-</table>
+<div class="row">
+    <div class="col-md-pull-9">
+        <div class="alert alert-success" role="alert">
+            {if !empty($om->logo_om)}
+                {*<img src="{$om->logo_om}" alt="logo OM" width="50" align="right">*}
+            {/if}
+            <div style="float: left;">
+                <div class="text-success text-uppercase" style="font-size: 28px; font-weight: bold;">
+                    <i>{if !empty($om)}{$om->nome_om}{else}<i><small class="text-danger"> OM não cadastrada</small></i> {/if}</i>
+                </div>
+                <div class="text-success">
+                    <i>{if !empty($om)}{$om->local_om}, {$dataHjEx}{/if}</i>
+                </div>
+            </div>
+                
+            <small>
+                <div class="text-info" style=" float: right;">
+                    <strong>DADOS DO DESPACHO</strong> {if $nivel == "admin"}<a href="cadastrarOM.php" class="btn btn-primary btn-xs" >Alterar parâmetros</a>{/if}<br>
+                    <i>{if !empty($om)}<strong>OD:</strong> {$om->comandante_om|upper} - {$om->post_grad_cmt_om}{/if}</i><br>
+                    <i>{if !empty($om)}<strong>Chefe Op Pipa:</strong> {$om->chefe_pipa}{/if}</i><br>
+                    <i>{if !empty($om)}<strong>Fiscal de contrato:</strong> {$om->fisc_contrato}{/if}</i><br>
+                </div>
+            </small>
+            {*<h4><small>{if $nivel =="admin" || $nivel == "gerente"}P.S. Foi adicionada funções de exclusão automatica de informação. A mensagem será excluida automaticamente ao corrigir a alteração informada. {else}P.S. Agora ao gerar declaração, os dados, devidamente cadastrados do usuário, será automaticamente preenchido pelo sistema. Caso não vigore, saia e entre no  sistema novamente.{/if} Att. Sgt Álvaro</small></h4>*}
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
 
-
+{if isset($anoCorrente)}
+    <div class="row">
+        <div class="col-md-pull-9">
+            <div class="alert alert-danger" role="alert">
+                <center>
+                    <p style="font-size: 26px; font-weight: bold;">Atenção!</p>
+                    <strong>Ano de prestação de conta diferente do ano correte.</strong><br>
+                    Ano cadastrado que irá aparecer na RPS e Declaração: <strong>{$anoCad}</strong> {if $nivel == "admin"}<a href="cadastrarOM.php" class="btn btn-primary btn-xs" >Alterar ano</a>{/if}<br>
+                    <i>Para alterar o ano da prestação de conta fale com o administrador do sistema.</i><br>
+                    <small><i>Situação normal somente em prestação de conta em janeiro referente ao mês de dezembro do ano passado</i></small>
+                </center>
+            </div>
+        </div>
+    </div>
+{/if}
 
 {if isset($mensagemADM)}
     {foreach $mensagemADM as $m}
@@ -55,10 +84,10 @@
 
 <div class="row">
     <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
+        <div class="alert alert-success" role="alert">
             <center>
                 <p>
-                    Total de RPS geradas hoje <strong>{$smarty.now|date_format:"%d/%m/%Y"} <span class="label label-default">{$totalRpsHj}</span></strong>
+                    RPS geradas em <strong>{$smarty.now|date_format:"%d/%m/%Y"} <span class="label label-default">{$totalRpsHj}</span></strong>
                 <form action="imprimirGfip.php" method="post" name="formCadastrarCarro">
                     <input type="hidden" id="relDiario" name="relDiario" value="1">
                     <input type="hidden" class="form-control" id="dataInicio" name="dataInicio" value="{$smarty.now|date_format:"%d/%m/%Y"}">
@@ -74,10 +103,8 @@
 
         {section name=a loop=$nome}
             <div class="col-md-6">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <h4>
-                        <span style='font-size: 13px;'> RPS Geradas por <a href="pesquisarRPS.php?buscaRPSMilitar={$nome[a]}"><strong>{$nome[a]} </strong></a></span> <span class="label label-default"> {$total[a]}</span>
-                    </h4>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <span style='font-size: 13px;'> Geradas por <a href="pesquisarRPS.php?buscaRPSMilitar={$nome[a]}" title="Clique aqui para visualizar todas."><strong>{$nome[a]} </strong></a></span> <span class="label label-default">{$total[a]}</span>
                 </div>
             </div>
         {/section}
@@ -96,8 +123,8 @@
 
 <div class="row">
     <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
-            <center><p>Total de RPS geradas no Mês de <strong>{$mesExtenco}</strong> <span class="label label-default">{$totalRpsMes}</span> </p></center>
+        <div class="alert alert-success" role="alert">
+            <center><p>RPS geradas no mês de <strong>{$mesExtenco|upper}</strong> referente a prestação de serviço de <strong>{$mesAnt|capitalize}</strong> <span class="label label-default">{$totalRpsMes}</span> </p></center>
         </div>
     </div>
 
@@ -105,8 +132,8 @@
     {if !empty($rpsMes)}
         {foreach $rpsMes as $rps}
             <div class="col-md-6">
-                <div class="alert alert-success" role="alert">
-                    {$rps->nome_militar} 
+                <div class="alert alert-warning" role="alert">
+                    Geradas por <a href="pesquisarRPS.php?buscaRPSMes={$rps->nome_militar}" title="Clique aqui para visualizar todas"><strong>{$rps->nome_militar}</strong></a> 
                     <span class="label label-default"> {$rps->total}</span>
                 </div>
             </div>
@@ -114,20 +141,13 @@
     {else}
         <div class="col-md-6 col-md-offset-3">
             <div class="alert alert-warning" role="alert">
-                <center>Nenhuma RPS gerada no Mês de {$mesExtenco}</center>
+                <center>Nenhuma RPS gerada no mês de {$mesExtenco}</center>
             </div>
         </div>
     {/if}
     {* fim do loop *}
-
 </div>
-<div class="row">
-    <div class="col-md-pull-9">
-        <div class="alert alert-info" role="alert">
-
-        </div>
-    </div>
-</div>
+<hr>
 {* fim mostrar rps geradas por cada usuário *}
 
 
@@ -154,7 +174,7 @@
                 </div>
                 <div class="form-group">
                     <div class="radio">
-                        <button type="submit" class="btn btn-default">Enviar</button>
+                        <button type="submit" class="btn btn-default">Mudar</button>
                     </div>
                 </div>
             </form>

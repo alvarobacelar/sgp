@@ -17,6 +17,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $nomeMilitar = addslashes($_POST["nomeMilitar"]);
         $postoGraduacao = addslashes($_POST["inputPostoGraducao"]);
         $cpfMilitar = addslashes($_POST["cpfMilitar"]);
+        $anoAtual = date("Y");
 
         /*
          *  Pegando os valores passado por post do cpf do pipeiro e separando o mês do cpf 
@@ -57,7 +58,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
             //adicionando quatidade de tickets que o pipeiro entregou
             $tickts = new ManipulateData();
             $tickts->setTable("rps");
-            $tickts->setCamposBanco("tickets_declaracao='$ticket', alteracoes_declaracao='$obs'");
+            $tickts->setCamposBanco("tickets_declaracao='$ticket', alteracoes_declaracao='$obs', assinatura_declaracao='$assinatura'");
             $tickts->setFieldId("id_rps");
             $tickts->setValueId("$idRps");
             $tickts->update();

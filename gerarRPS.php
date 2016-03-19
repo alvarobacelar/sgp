@@ -26,16 +26,18 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $buscaOM->setTable("om");
         $buscaOM->select();
         $om = $buscaOM->fetch_object();
+        $anoPres = $om->ano_prestacao; // setando o valor do ano da prestação de contas
 
-        // caso o ano seja diferente, será mudado conforme o usuário passar
-        if (isset($_POST["inputAno"])) {
-            $anoPestacao = addslashes($_POST["inputAno"]);
-            $smarty->assign("anoPrestacao", $anoPestacao);
-            $anoPres = $_POST["inputAno"];
-        } else {
-            $smarty->assign("anoPrestacao", date("Y"));
-            $anoPres = date("Y");
-        }
+        // antes o ano da prestação de contas era passado pelo o usuário, agora é no sistema que é definido pelo adm. 
+//        // caso o ano seja diferente, será mudado conforme o usuário passar
+//        if (isset($_POST["inputAno"])) {
+//            $anoPestacao = addslashes($_POST["inputAno"]);
+//            $smarty->assign("anoPrestacao", $anoPestacao);
+//            $anoPres = $_POST["inputAno"];
+//        } else {
+//            $smarty->assign("anoPrestacao", date("Y"));
+//            $anoPres = date("Y");
+//        }
         
         //verificando se existe RPS já gerada no mês corrente do cpf informado
         $rpsGerada = new ManipulateData();

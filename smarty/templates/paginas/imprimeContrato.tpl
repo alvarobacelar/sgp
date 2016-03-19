@@ -6,7 +6,7 @@
             <style type="text/css">
                 body p {
                     font-family: 'Times New Roman';
-                    //font-size: 15px;
+                    font-size: 15px;
                     .row{
                         width: 100%;
                         text-align: center;

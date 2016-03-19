@@ -9,7 +9,8 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
     $posto = addslashes($_SESSION["posto"]);
     $cpf = addslashes($_SESSION["cpf"]);
-    $nome = addslashes($_SESSION["nome"]);
+    $nomeCompleto = addslashes($_SESSION["nome"]);
+    $nome = addslashes($_SESSION["nomeGuerra"]);
 
     $nomeBuscaDec = $posto . " " . $nome;
     $dataHoje = date("Y-m-d"); // setando a data do dia para buscar rps gerada no dia
@@ -26,6 +27,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
     $smarty->assign("cpf", $cpf);
     $smarty->assign("posto", $posto);
+    $smarty->assign("nomeCompleto", $nomeCompleto);
     $smarty->assign("conteudo", "paginas/pesquisarPipeiroDeclaracao.tpl");
     $smarty->display("HTML.tpl");
 }

@@ -183,7 +183,15 @@
                 </table><br />
                 RP____________________________ &nbsp;&nbsp;NE_______________________________&nbsp;&nbsp; NS____________________________
                 <br />
-                <small>{$posto} {$nome}</small>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: center;"> 
+                    __________________________________________
+                    <small>{$posto} {$nome}</small>
+                </div>
             </div>
         {else}
             <h3 class="text-danger" style="font-size: 11px;"><center>Não há cadastro para este CPF</center></h3>

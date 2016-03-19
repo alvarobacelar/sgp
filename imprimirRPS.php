@@ -7,12 +7,21 @@ require_once './includes/classes/GerarRps.php';
 require_once './lib/PdfLib.php';
 
 if ($estaLogado == "SIM" && !isset($active)) {
-    
+
     $cpf = addslashes($_POST["cpf"]);
     $valorRS = addslashes($_POST["valor"]);
     $mes = addslashes($_POST["mes"]);
-    $ano = addslashes($_POST["ano"]);
     $mesNumero = addslashes($_POST["mesNumero"]);
+
+    // busca os dados da OM
+    $buscaOM = new ManipulateData();
+    $buscaOM->setTable("om");
+    $buscaOM->select();
+    $om = $buscaOM->fetch_object();
+
+    $ano = $om->ano_prestacao;
+    $mostraDespacho = $om->status;
+
 
     //verificando se existe RPS já gerada no mês corrente do cpf informado
     $rpsGerada = new ManipulateData();
@@ -25,7 +34,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
     $quemGerou = $valor->nome_militar;
     $idRps = $valor->id_rps;
 
-    
+
     if ($total >= 1) {
         //$smarty->assign("existente", "A RPS deste Pipeiro já foi gerada neste mês por <i><strong>$quemGerou</strong></i>. <br />Para excuir esta RPS e gerar outra, entre em contato com o Oficial Gerenciador do sistema");
         echo "<script>
@@ -48,14 +57,6 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $gerarRps->setValueId("$cpf");
         $gerarRps->selectRPS();
         $dbRps = $gerarRps->fetch_object();
-
-        // busca os dados da OM
-        $buscaOM = new ManipulateData();
-        $buscaOM->setTable("om");
-        $buscaOM->select();
-        $om = $buscaOM->fetch_object();
-
-        $mostraDespacho = $om->status;
 
         if ($mostraDespacho == 0) {
             $smarty->assign("mostraDespacho", "S");

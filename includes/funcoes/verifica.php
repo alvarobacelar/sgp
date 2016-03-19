@@ -1,5 +1,19 @@
 <?php
 
+/*
+ * Função que força a conexão HTTPS
+ */
+function ForceHTTPS() {
+    if ($_SERVER['HTTPS'] != "on") {
+
+        $url = $_SERVER['SERVER_NAME'];
+
+        $new_url = "https://" . $url . $_SERVER['REQUEST_URI'];
+        header("Location: $new_url");
+        exit;
+    }
+}
+
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -13,14 +27,14 @@ if (!isset($_SESSION["idSession"])) {
     $local = 0;
 } else {
     // autentica o usuario
-    
+
     $nivel = $_SESSION['nivel'];
     $funcao = $_SESSION['funcao'];
-    $smarty->assign("nomeUser", $_SESSION["posto"] ." ". $_SESSION["nomeGuerra"]);
+    $smarty->assign("nomeUser", $_SESSION["posto"] . " " . $_SESSION["nomeGuerra"]);
     $smarty->assign("posto", $_SESSION["posto"]);
     $smarty->assign("nivel", $nivel);
     $smarty->assign("funcao", $funcao);
-    $smarty->assign("versao", "2.0.1");
+    $smarty->assign("versao", "2.0.2");
     $estaLogado = "SIM";
 }
 
@@ -38,8 +52,9 @@ if (!isset($codActive) || $codActive != "0946625e04ce0f399f7b4a6d53063b59") {
     $smarty->assign("conteudo", "paginas/failActive.tpl");
     $smarty->display("HTMLActive.tpl");
     $active = '$1$iABDsn/Y$GqS7G79oLJlywwW0.FHts/';
-    
 } else {
+    
+    ForceHTTPS();
 
 // se não existe nenhum usuario logado, manda para a tela de login
     if ($estaLogado == "NAO") {
@@ -52,6 +67,7 @@ if (!isset($codActive) || $codActive != "0946625e04ce0f399f7b4a6d53063b59") {
         unset($_SESSION["erro"]); // destroi a session do erro
         // chama a tela de login caso não houver session estartada
         $smarty->assign("titulo", " - Login");
+        $smarty->assign("versao", "2.0.2");
         $smarty->assign("conteudoLogin", "login/login.tpl");
         $smarty->display("HTMLogin.tpl");
     }

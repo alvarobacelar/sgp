@@ -39,3 +39,8 @@ body{
 #fichaCadastro .tableDados{font-size: 14px;}
 
 .cidadeDesativada{color: #999; font-weight: bold;}
+
+.clear{ /* div para deixar o rodapé no final fixo */
+        clear:both;
+        margin:0;
+}

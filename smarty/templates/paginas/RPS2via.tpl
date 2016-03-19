@@ -186,7 +186,15 @@
                 </table><br />
                 RP____________________________ &nbsp;&nbsp;NE_______________________________&nbsp;&nbsp; NS____________________________
                 <br />
-                <small>{$rps->nome_militar}</small>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div style="text-align: center;"> 
+                    __________________________________________<br/>
+                    <small>{$rps->nome_militar}</small>
+                </div>
             </div>
 
 
@@ -200,7 +208,7 @@
         {/if}
 
         {if $om->carimbo_rps_om != "" && $mostraDespacho == "S"}
-            
+
             {include file="paginas/despacho.tpl"}
             <!--
             <div>

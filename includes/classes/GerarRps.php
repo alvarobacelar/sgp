@@ -124,9 +124,8 @@ class GerarRps {
 
     /**
      * Metodo que calcula o imposto da RPS
-     * @access private
-     * @return float
-     * @ReturnType float
+     * @access public
+     * @return none
      */
     public function calcularImposto() {
 
@@ -146,7 +145,7 @@ class GerarRps {
 
     /**
      * Metodo que grava os dados da RPS
-     * @access private
+     * @access public
      * @return void
      * @ReturnType void
      */
@@ -163,7 +162,7 @@ class GerarRps {
         $somaImpostos = $this->getSomaImpostos();
         $calculoBase = $this->getInssSenat();
         $ip = $_SERVER["REMOTE_ADDR"];
-        $nomeMilitar = $_SESSION["posto"] . " " . $_SESSION["nome"];
+        $nomeMilitar = $_SESSION["posto"] . " " . $_SESSION["nomeGuerra"];
         
         $gravar = new ManipulateData();
         $gravar->setTable("rps");

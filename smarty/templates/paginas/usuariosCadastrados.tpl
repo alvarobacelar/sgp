@@ -13,6 +13,7 @@
             {if isset($busca)}
                 <th><center>Pos/Grad</center></th>
                 <th><center>Nome</center></th>
+                <th><center>Nome guerra</center></th>
                 <th><center>Login</center></th>
                 <th><center>Nivel</center></th>
                 <th><center>Função</center></th>
@@ -21,6 +22,7 @@
                     <tr class="text-center">
                         <td class="active">{$u->posto_grad_usuario}</td>
                         <td class="active">{$u->nome_usuario}</td>
+                        <td class="active">{$u->nome_guerra}</td>
                         <td class="active">{$u->login_usuario}</td>
                         <td class="active">{if $u->nivel == 0}Administrador{else if $u->nivel == 2}RPS{else if $u->nivel == 1}Supervisor{else if $u->nivel == 3}Setor Financeiro{/if}</td>
                         <td class="active">{$u->funcao_usuario}</td>

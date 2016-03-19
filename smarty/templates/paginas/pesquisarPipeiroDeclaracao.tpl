@@ -82,7 +82,7 @@
             <div class="form-group form-group-lg">
                 <label class="col-sm-2 control-label" for="inputValor">Nome do militar</label>
                 <div class="col-sm-9">
-                    <input class="form-control" type="text" id="nomeMilitar" name="nomeMilitar" required="" value="{$nomeUser}" placeholder="Ex: Álvaro Bacelar de Sousa">
+                    <input class="form-control" type="text" id="nomeMilitar" name="nomeMilitar" required="" value="{$nomeCompleto}" placeholder="Ex: Álvaro Bacelar de Sousa">
                 </div>
             </div>
             <div class="form-group form-group-lg">

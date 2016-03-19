@@ -38,7 +38,7 @@ if ($estaLogado == "SIM" && !isset($active)) {
 
         $dataHoje = date("Y-m-d"); // setando a data do dia para buscar quais usuários geraram rps
         $nomeBuscaPipeiro = addslashes($_GET["buscaRPSMilitar"]);
-        
+
         //buscando as rps geradas no dia da pesquisa por usuário
         $buscaRPS->setTable("rps,pipeiro");
         $buscaRPS->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND nome_militar = '$nomeBuscaPipeiro' AND data_pesquisa = '$dataHoje' AND status_remove='0'");
@@ -59,11 +59,42 @@ if ($estaLogado == "SIM" && !isset($active)) {
         $buscaRPS->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND rps.id_rps = '$idPipeiro' AND status_remove='0'");
         $buscaRPS->select();
         $valorBusca[] = $buscaRPS->fetch_object();
-        
+
         //$nomePipeiroRps = $valorBusca->nome_pipeiro;
         $smarty->assign("valorBusca", $valorBusca);
 
-        //$smarty->assign("buscaRPS", $nomePipeiroRps);
+    /*
+     * Caso o usuário clique para ver as RPS geradas por um usuário dentro do mês corrente.
+     */
+    } else if (isset($_GET["buscaRPSMes"])) {
+
+        $mesBusca = date("m"); // setando a data do dia para buscar quais usuários geraram rps
+        $mesAnt = array(
+            '01' => 'DEZEMBRO',
+            '02' => 'JANEIRO',
+            '03' => 'FEVEREIRO',
+            '04' => 'MARÇO',
+            '05' => 'ABRIL',
+            '06' => 'MAIO',
+            '07' => 'JUNHO',
+            '08' => 'JULHO',
+            '09' => 'AGOSTO',
+            '10' => 'SETEMBRO',
+            '11' => 'OUTUBRO',
+            '12' => 'NOVEMBRO'
+        );
+
+        $nomeBuscaPipeiro = addslashes($_GET["buscaRPSMes"]);
+
+        //buscando as rps geradas no dia da pesquisa por usuário
+        $buscaRPS->setTable("rps,pipeiro");
+        $buscaRPS->setOrderTable("WHERE rps.pipeiro_id_pipeiro = pipeiro.id_pipeiro AND nome_militar = '$nomeBuscaPipeiro' AND mes_rps = '$mesAnt[$mesBusca]' AND status_remove='0'");
+        $buscaRPS->select();
+
+        while ($valorBusca[] = $buscaRPS->fetch_object()) {
+            $smarty->assign("valorBusca", $valorBusca);
+        }
+        $smarty->assign("buscaRPS", $nomeBuscaPipeiro);
     }
 
 
