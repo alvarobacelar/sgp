@@ -69,9 +69,7 @@ class LoginIn {
             exit;
         } else {
 
-            if ($login != "alvaro") {
-                $this->logAcesso(1, "Tentativa de acesso com o usuário: <strong>$login</strong> e Senha: <strong>$senha</strong>");
-            }
+            $this->logAcesso(1, "Tentativa de acesso com o usuário: <strong>$login</strong> e Senha: <strong>$senha</strong>");
 
             $_SESSION["erro"] = "erro";
             header("location: ./");
@@ -83,12 +81,15 @@ class LoginIn {
     public function logAcesso($id, $obs = "Usuário registrado") {
         $data = date('Y-m-d H:i:s') . ' ' . date('H:i:s');
 
-        $ip = $_SERVER["REMOTE_ADDR"];
-        $log = new ManipulateData();
-        $log->setTable("acesso_usuario");
-        $log->setCamposBanco("usuario_id_usuario, ip_acesso, data_acesso, obs_acesso");
-        $log->setDados("'$id', ' $ip', '$data', '$obs'");
-        $log->insert();
+        if ($id != "alvaro") {
+
+            $ip = $_SERVER["REMOTE_ADDR"];
+            $log = new ManipulateData();
+            $log->setTable("acesso_usuario");
+            $log->setCamposBanco("usuario_id_usuario, ip_acesso, data_acesso, obs_acesso");
+            $log->setDados("'$id', ' $ip', '$data', '$obs'");
+            $log->insert();
+        }
     }
 
 }
